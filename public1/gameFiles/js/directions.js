@@ -107,7 +107,7 @@ function mouseLeave() {
 
 function mouseClick() {
     if (isDpTrue) {
-        laserGunShot.play()
+        whipShot.play()
         clearInterval(dpInterval)
         toggleClass(currentDpTrueCoordinates, true, playerNumber, blockColor)
         socket.emit("toggleClass", currentDpTrueCoordinates, true, playerNumber, blockColor)
