@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+
+.container__match-type-container,
+.container__create-container,
+.container__join-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.container__match-type {
+    width: 250px;
+    border: 2px solid rgba(0, 255, 255, 1);
+    background-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 4px rgba(0, 255, 255, 1);
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    color: black;
+    outline: none;
+}
+
+.container__room-id-output,
+.container__room-id-input {
+    width: 250px;
+    border: 2px solid rgba(0, 255, 255, 1);
+    background-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 4px rgba(0, 255, 255, 1);
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    color: black;
+    outline: none;
+
+}
+
+.container__match-type-button,
+.container__create-room-id-button,
+.container__join-room-id-button {
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid rgba(0, 255, 0, 1);
+    background-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 4px rgba(0, 255, 0, 1);
+    color: white;
+    cursor: pointer;
+}
