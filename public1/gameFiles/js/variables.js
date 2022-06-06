@@ -21,7 +21,7 @@ let windowBreak = new Audio('/gameFiles/sound/windowBreak.mp3')
 let glassBreak = new Audio('/gameFiles/sound/glassBreak.mp3')
 let score = 0
 let play = undefined
-let scoreBox = document.querySelector('.score')
+let scoreBox = undefined
 let binaryMatrix = undefined
 let coordinatesOfShapes = [
 

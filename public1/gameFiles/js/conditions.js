@@ -1,4 +1,5 @@
 
+
 function moveTheCoordinates(inputCoordinates, direction, column) {
 
     if (direction == "down") {
@@ -32,7 +33,9 @@ function isRowFull(currentCoordinates) {
     }
 
     score += fullRows.length * (100 * fullRows.length)
+    scoreBox = document.querySelector(`.${playerNumber}score`)
     scoreBox.innerText = `${score}`
+    socket.emit("update score", playerNumber, score)
 
 }
 

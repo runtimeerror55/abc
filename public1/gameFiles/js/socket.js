@@ -52,3 +52,10 @@ socket.on("can i reset", (payload) => {
         addGameBoxContentEventListeners()
     }
 })
+
+
+socket.on("update score", (playerNumber, score) => {
+    scoreBox = document.querySelector(`.${playerNumber}score`)
+    scoreBox.innerText = `${score}`
+    console.log(score)
+})
