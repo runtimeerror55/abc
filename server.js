@@ -99,6 +99,10 @@ io.on("connection", (socket) => {
         socket.emit("can i reset", ans)
     })
 
+    socket.on("update score", (playerNumber, score) => {
+        socket.broadcast.in(id).emit("update score", playerNumber, score)
+    })
+
 })
 
 
