@@ -1,4 +1,5 @@
 function start() {
+
     ++currentBlockIndex
     currentDpTrueCoordinates = -1
     previous = -1
