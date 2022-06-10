@@ -22,14 +22,16 @@ function moveTheCoordinates(inputCoordinates, direction, column) {
 function isRowFull(currentCoordinates) {
 
     let i = 0
-    let fullRows = []
 
-    fullRows = currentCoordinates.flat().filter((element, index) => index % 2 == 0 && binaryMatrix[element][15] == 15)
-    fullRows = [...new Set(fullRows)].sort()
 
-    for (let i of fullRows) {
+    let fullRows = currentCoordinates.flat().filter((element, index) => index % 2 == 0 && arrayOftotalNoOfBlocksInEachRow[element] == 15)
+    fullRows = [...new Set(fullRows)].sort((a, b) => a - b)
 
-        destroy(i, playerNumber)
+    if (fullRows.length) {
+
+        socket.emit("destroy", fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, false)
+        destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, true)
+
     }
 
     score += fullRows.length * (100 * fullRows.length)

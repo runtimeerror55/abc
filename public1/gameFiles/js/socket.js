@@ -29,10 +29,9 @@ socket.on("laserBeamRow", (playerNumber, row, width) => {
     console.log(laserBeamRow)
 })
 
-socket.on("destroy", (playerNumber, row, column, colorClass) => {
+socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber) => {
 
-    let box = document.querySelector(`.${playerNumber}row${row}column${column}`)
-    box.classList.toggle(colorClass)
+    destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber)
 })
 
 socket.on("game over", (playerIndexValue) => {
@@ -50,6 +49,7 @@ socket.on("can i reset", (payload) => {
         createGameBoxContent()
         refreshBinaryMatrix(binaryMatrix)
         addGameBoxContentEventListeners()
+        refreshArrayOftotalNoOfBlocksInEachRow()
     }
 })
 

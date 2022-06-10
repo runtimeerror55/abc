@@ -100,3 +100,17 @@ function generateBlockProperties() {
         }
     }
 }
+
+function createArrayOftotalNoOfBlocksInEachRow() {
+    arrayOftotalNoOfBlocksInEachRow = new Array(25)
+    for (let i = 0; i < 25; i++) {
+        arrayOftotalNoOfBlocksInEachRow[i] = 0
+    }
+}
+
+
+function refreshArrayOftotalNoOfBlocksInEachRow() {
+    for (let i = 0; i < 25; i++) {
+        arrayOftotalNoOfBlocksInEachRow[i] = 0
+    }
+}

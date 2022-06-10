@@ -5,6 +5,7 @@ createBinaryMatrix()
 addBodyEventListener()
 generateBlockProperties()
 addPlayButtonEventListeners()
+createArrayOftotalNoOfBlocksInEachRow()
 
 
 

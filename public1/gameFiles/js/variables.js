@@ -44,3 +44,4 @@ let currentBlockIndex = -1
 let gameOverNode = undefined
 let playerButton = undefined
 let resetButton = undefined
+let arrayOftotalNoOfBlocksInEachRow = undefined

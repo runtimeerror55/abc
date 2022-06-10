@@ -77,8 +77,8 @@ io.on("connection", (socket) => {
         socket.broadcast.in(id).emit("laserBeamRow", playerNumber, row, width)
     })
 
-    socket.on("destroy", (playerNumber, row, column, colorClass) => {
-        socket.broadcast.in(id).emit("destroy", playerNumber, row, column, colorClass)
+    socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) => {
+        socket.broadcast.in(id).emit("destroy", fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag)
     })
 
     socket.on("anyone connected", (roomId) => {

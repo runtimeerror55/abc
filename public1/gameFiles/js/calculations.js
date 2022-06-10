@@ -44,6 +44,7 @@ function markTheCoordinates(currentCoordinates) {
     currentCoordinates.forEach(element => {
         binaryMatrix[element[0]][element[1]] = 1
         binaryMatrix[element[0]][15]++;
+        arrayOftotalNoOfBlocksInEachRow[element[0]]++
     });
 }
 
@@ -52,59 +53,65 @@ function markTheCoordinates(currentCoordinates) {
 
 
 
-function destroy(row, playerNumber) {
+function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) {
 
-    laserInSpace.play()
-    let laserBeamRow = document.querySelector(`.${playerNumber}laser-beam-row${row}`)
-    laserBeamRow.style.width = "360px"
-    socket.emit("laserBeamRow", playerNumber, row, "360px")
+    fullRows.forEach(row => {
 
-    setTimeout(() => {
+        laserInSpace.play()
+        let laserBeamRow = document.querySelector(`.${playerNumber}laser-beam-row${row}`)
+        laserBeamRow.style.width = "360px"
+        socket.emit("laserBeamRow", playerNumber, row, "360px")
 
-        glassBreak.play()
+        setTimeout(() => {
 
-        for (let i = 0; i < 15; i++) {
-
-            let box = document.querySelector(`.${playerNumber}row${row}column${i}`)
-            let position = box.className.search(/active[0-9]/)
-            let colorClass = box.className.substring(position, position + 7)
-            box.classList.toggle(colorClass)
-            binaryMatrix[row][i] = 0
-            socket.emit("destroy", playerNumber, row, i, colorClass)
-        }
-
-        binaryMatrix[row][15] = 0;
-        let k = row - 1
-
-        while (binaryMatrix[k][15]) {
-
+            glassBreak.play()
             for (let i = 0; i < 15; i++) {
 
-                let box = document.querySelector(`.${playerNumber}row${k}column${i}`)
-                let box1 = document.querySelector(`.${playerNumber}row${k + 1}column${i}`)
-
-                if (binaryMatrix[k][i] == 1) {
-
-                    let position = box.className.search(/active[0-9]/)
-                    let colorClass = box.className.substring(position, position + 7)
-                    box.classList.toggle(colorClass)
-                    socket.emit("destroy", playerNumber, k, i, colorClass)
-                    box1.classList.toggle(colorClass)
-                    socket.emit("destroy", playerNumber, k + 1, i, colorClass)
-                    binaryMatrix[k][i] = 0
-                    binaryMatrix[k + 1][i] = 1
+                let box = document.querySelector(`.${playerNumber}row${row}column${i}`)
+                let position = box.className.search(/active[0-9]/)
+                let colorClass = box.className.substring(position, position + 7)
+                box.classList.toggle(colorClass)
+                if (flag) {
+                    binaryMatrix[row][i] = 0
                 }
-
             }
 
-            binaryMatrix[k + 1][15] = binaryMatrix[k][15]
-            binaryMatrix[k][15] = 0
-            k--
-        }
+            arrayOftotalNoOfBlocksInEachRow[row] = 0
+            let k = row - 1
 
-        laserBeamRow.style.width = '0px'
-        socket.emit("laserBeamRow", playerNumber, row, "0px")
-    }, 400)
+            while (arrayOftotalNoOfBlocksInEachRow[k]) {
+
+                for (let i = 0; i < 15; i++) {
+
+                    let box = document.querySelector(`.${playerNumber}row${k}column${i}`)
+                    let position = box.className.search(/active[0-9]/)
+
+                    if (position != -1) {
+
+                        let box1 = document.querySelector(`.${playerNumber}row${k + 1}column${i}`)
+                        let colorClass = box.className.substring(position, position + 7)
+                        box.classList.toggle(colorClass)
+                        box1.classList.toggle(colorClass)
+
+                        if (flag) {
+
+                            binaryMatrix[k][i] = 0
+                            binaryMatrix[k + 1][i] = 1
+                        }
+                    }
+
+                }
+
+                arrayOftotalNoOfBlocksInEachRow[k + 1] = arrayOftotalNoOfBlocksInEachRow[k]
+                arrayOftotalNoOfBlocksInEachRow[k] = 0
+                k--
+            }
+
+            laserBeamRow.style.width = '0px'
+            socket.emit("laserBeamRow", playerNumber, row, "0px")
+        }, 400)
+    })
+
 }
 
 
