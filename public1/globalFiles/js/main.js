@@ -1,9 +1,11 @@
 let body = document.querySelector('body')
 let cssLink = document.querySelector('link')
 let playerNumber = ""
-let arrayOfPlayers = ["player-one__", "player-two__"]
+let arrayOfPlayers = ["player-one__", "player-two__", "player-three__"]
 let roomIdInputvalue = ""
 let playerIndexValue = -1
+let matchTypeValue = 2
+let playersHtml = ""
 
 
 

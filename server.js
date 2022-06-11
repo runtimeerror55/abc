@@ -38,8 +38,8 @@ io.on("connection", (socket) => {
             objecOfConnectedRooms[roomId] = {
 
                 "connectedPlayers": 0,
-                "playerIndexes": [false, false],
-                "gameOver": [false, false]
+                "playerIndexes": [false, false, false],
+                "gameOver": [false, false, false]
             }
         }
         objecOfConnectedRooms[roomId]["playerIndexes"][playerIndex] = true

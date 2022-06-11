@@ -43,6 +43,7 @@ socket.on("can i reset", (payload) => {
     if (payload) {
         arrayOfPlayers.forEach(element => {
             gameOverNode = document.querySelector(`.${element}game-over`)
+            console.log(element, gameOverNode)
             gameOverNode.style.height = "0"
         })
 

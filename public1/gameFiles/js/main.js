@@ -1,3 +1,4 @@
+createArrayOfPlayersGameBoxContainer()
 createDpArray()
 createGameBoxContent()
 addGameBoxContentEventListeners()

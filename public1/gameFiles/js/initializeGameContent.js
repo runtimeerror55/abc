@@ -38,7 +38,7 @@ function createBinaryMatrix() {
 
 function createGameBoxContent() {
 
-    for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
         arrayOfPlayersGameBoxContainer[playerIndex].innerHTML = ""
         for (let row = 0; row < 25; row++) {
 
@@ -112,5 +112,13 @@ function createArrayOftotalNoOfBlocksInEachRow() {
 function refreshArrayOftotalNoOfBlocksInEachRow() {
     for (let i = 0; i < 25; i++) {
         arrayOftotalNoOfBlocksInEachRow[i] = 0
+    }
+}
+
+
+function createArrayOfPlayersGameBoxContainer() {
+    arrayOfPlayersGameBoxContainer = new Array(matchTypeValue)
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+        arrayOfPlayersGameBoxContainer[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}gbc`)
     }
 }

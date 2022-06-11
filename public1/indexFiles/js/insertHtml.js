@@ -1,8 +1,8 @@
 function insertTeamsHtml() {
     cssLink.href = "/teamsFiles/css/style.css"
-    if (matchTypeIndex != 5) {
+    if (matchTypeValue != 5) {
 
-        for (let i = 0; i < matchTypeIndex; i++) {
+        for (let i = 0; i < matchTypeValue; i++) {
             playersHtml +=
 
                 `

@@ -1,263 +1,138 @@
 function insertGameHtml() {
     cssLink.href = "/gameFiles/css/style.css"
-    body.innerHTML =
-        ` 
-        <main class="main">
+    playersHtml = ""
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+        playersHtml +=
 
-        <article class="article player-one">
-            <!-- gac = game-area-container -->
-            <div class="player-one__gac gac">
-                <section>
-                    <div class="player-one__part-one part-one">
+            `
 
-                        <!-- gbuc = game-buttons-container -->
-                        <div class="player-one__gbuc gbuc">
-                            <div class="player-one__score score">
-                                score</div>
-                            <div class="player-one__play play">
-                                play</div>
-                            <div class="player-one__restart restart">
-                                restart
-                            </div>
+                            <article class="article ${arrayOfPlayers[playerIndex]}
+                                <!-- gac = game-area-container -->
+                                <div class="${arrayOfPlayers[playerIndex]}gac gac">
+                                    <section>
+                                        <div class="${arrayOfPlayers[playerIndex]}part-one part-one">
 
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div class="player-one__part-two part-two">
+                                            <!-- gbuc = game-buttons-container -->
+                                            <div class="${arrayOfPlayers[playerIndex]}gbuc gbuc">
+                                                <div class="${arrayOfPlayers[playerIndex]}score score">
+                                                    score</div>
+                                                <div class="${arrayOfPlayers[playerIndex]}play play">
+                                                    play</div>
+                                                <div class="${arrayOfPlayers[playerIndex]}restart restart">
+                                                    restart
+                                                </div>
 
-                        <section>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <div class="${arrayOfPlayers[playerIndex]}part-two part-two">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                            <section>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                            <div class="player-one__rectangle-left rectangle-left">
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                            </div>
-                        </section>
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-left rectangle-left">
 
-                        <section>
-                            <!-- gbc = game-box-container -->
-                            <div class="player-one__gbc gbc"></div>
+                                                </div>
+                                            </section>
 
-                            <section>
-                                <div class="player-one__rectangle-center rectangle-center">
+                                            <section>
+                                                <!-- gbc = game-box-container -->
+                                                <div class="${arrayOfPlayers[playerIndex]}gbc gbc"></div>
 
+                                                <section>
+                                                    <div class="${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class=" ${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class="${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class=" ${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class="${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class=" ${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+                                                    <div class="${arrayOfPlayers[playerIndex]}rectangle-center rectangle-center">
+
+                                                    </div>
+
+
+                                                </section>
+
+                                            </section>
+
+                                            <section>
+                                                <div class=" ${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class=" ${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class=" ${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class=" ${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class=" ${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                                <div class="${arrayOfPlayers[playerIndex]}rectangle-right rectangle-right">
+
+                                                </div>
+                                            </section>
+
+                                        </div>
+                                    </section>
                                 </div>
-                                <div class=" player-one__rectangle-center rectangle-center">
+                                <section>
 
-                                </div>
-                                <div class="player-one__rectangle-center rectangle-center">
-
-                                </div>
-                                <div class=" player-one__rectangle-center rectangle-center">
-
-                                </div>
-                                <div class="player-one__rectangle-center rectangle-center">
-
-                                </div>
-                                <div class=" player-one__rectangle-center rectangle-center">
-
-                                </div>
-                                <div class="player-one__rectangle-center rectangle-center">
-
-                                </div>
-
-
-                            </section>
-
-                        </section>
-
-                        <section>
-                            <div class=" player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class=" player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class="player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class=" player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class="player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class=" player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class="player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class=" player-one__rectangle-right rectangle-right">
-
-                            </div>
-                            <div class="player-one__rectangle-right rectangle-right">
-
-                            </div>
-                        </section>
-
-                    </div>
-                </section>
-            </div>
-            <section>
-
-                <div class="player-one__game-over">
-                    <button class="player-one__reset reset">reset</button>
-                </div>
-            </section>
-        </article>
-
-        <article class="article player-two">
-            <!-- gac = game-area-container -->
-            <div class="player-two__gac gac">
-                <section>
-                    <div class="player-two__part-one part-one">
-
-                        <!-- gbuc = game-buttons-container -->
-                        <div class="player-two__gbuc gbuc">
-                            <div class="player-two__score player-two__game-button score game-button">
-                                score</div>
-                            <div class="player-two__play player-two__game-button play game-button">
-                                play</div>
-                            <div class="player-two__restart player-two__game-button restart game-button">
-                                restart
-                            </div>
-
-                        </div>
-
-                    </div>
-                </section>
-
-
-                <div class="player-two__part-two part-two">
-
-                    <section>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                        <div class="player-two__rectangle-left rectangle-left">
-
-                        </div>
-                    </section>
-
-                    <section>
-                        <!-- gbc = game-box-container -->
-                        <div class="player-two__gbc gbc"></div>
-
-                        <section>
-                            <div class="player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class=" player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class="player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class=" player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class="player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class=" player-two__rectangle-center rectangle-center">
-
-                            </div>
-                            <div class="player-two__rectangle-center rectangle-center">
-
-                            </div>
-
-
-                        </section>
-
-                    </section>
-
-                    <section>
-                        <div class=" player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class=" player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class="player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class=" player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class="player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class=" player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class="player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class=" player-two__rectangle-right rectangle-right">
-
-                        </div>
-                        <div class="player-two__rectangle-right rectangle-right">
-
-                        </div>
-                    </section>
-
-                </div>
-            </div>
-            <section>
-
-                <div class="player-two__game-over">
-                    <button class="player-two__reset reset">reset</button>
-                </div>
-            </section>
-        </article>
-
-
-    </main>
-    `
+                                    <div class="${arrayOfPlayers[playerIndex]}game-over game-over">
+                                        <button class="${arrayOfPlayers[playerIndex]}reset reset">reset</button>
+                                    </div>
+                                </section>
+                            </article >
+                            `
+    }
+    body.innerHTML = `<main class="main">${playersHtml}</main>`
     loadJsDynamically("/gameFiles/js/directions.js")
     loadJsDynamically("/gameFiles/js/addAndToggleClass.js")
     loadJsDynamically("/gameFiles/js/initializeGameContent.js")

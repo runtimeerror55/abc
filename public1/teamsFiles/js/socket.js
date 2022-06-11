@@ -6,7 +6,7 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
         disconnectButtons[playerIndex].style.display = "block"
     }
 
-    if (numberOfconnectedPlayers == 2) {
+    if (numberOfconnectedPlayers == matchTypeValue) {
         goButton.style.display = "block"
     }
     connectButtons[playerIndex].classList.add("active")

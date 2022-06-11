@@ -1,6 +1,4 @@
-let playerOneGameBoxContainer = document.querySelector('.player-one__gbc')
-let playerTwoGameBoxContainer = document.querySelector('.player-two__gbc')
-let arrayOfPlayersGameBoxContainer = [playerOneGameBoxContainer, playerTwoGameBoxContainer]
+let arrayOfPlayersGameBoxContainer = undefined
 let currentDpTrueCoordinates = -1
 let previous = -1
 let dpInterval = undefined

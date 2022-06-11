@@ -8,11 +8,18 @@ function addRoomButtonsEventListeners() {
     joinRoomIdButton.addEventListener("click", () => {
 
         roomIdInputvalue = roomIdInput.value
-        matchTypeIndex = Number(matchType.value)
+        matchTypeValue = Number(matchType.value)
 
         if (roomIdInputvalue != "") {
             socket.emit("join room", roomIdInputvalue)
             insertTeamsHtml()
         }
+    })
+}
+
+
+function addMatchTypeEventListeners() {
+    matchType.addEventListener("input", (e) => {
+        matchTypeValue = e.target.value
     })
 }
