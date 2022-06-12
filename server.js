@@ -18,10 +18,10 @@ app.get('/', (req, res) => {
 });
 
 app.set('views engine', 'ejs')
-app.use('/indexFiles', express.static('public1/indexFiles'))
-app.use('/teamsFiles', express.static('public1/teamsFiles'))
-app.use('/gameFiles', express.static('public1/gameFiles'))
-app.use('/globalFiles', express.static('public1/globalFiles'))
+app.use('/indexFiles', express.static('public/indexFiles'))
+app.use('/teamsFiles', express.static('public/teamsFiles'))
+app.use('/gameFiles', express.static('public/gameFiles'))
+app.use('/globalFiles', express.static('public/globalFiles'))
 
 
 io.on("connection", (socket) => {
