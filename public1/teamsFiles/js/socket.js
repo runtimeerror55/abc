@@ -9,7 +9,7 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
         disconnectButtons[playerIndex].style.display = "block"
     }
 
-    if (numberOfconnectedPlayers == matchTypeValue) {
+    if (numberOfconnectedPlayers == matchTypeValue && isAdmin) {
         goButton.style.display = "block"
     }
     connectButtons[playerIndex].classList.add("active")
@@ -46,4 +46,9 @@ socket.on("anyone connected", (connectedPlayersIndexes) => {
             disconnectButtons[index].style.display = "none"
         }
     });
+})
+
+
+socket.on("enter the game arena", () => {
+    insertGameHtml()
 })

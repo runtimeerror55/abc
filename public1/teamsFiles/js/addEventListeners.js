@@ -22,6 +22,7 @@ function addDisconnectButtonsEventListeners() {
 
 function addGoButtonEventListeners() {
     goButton.addEventListener("click", () => {
+        socket.emit("enter the game arena", roomIdInputvalue)
         insertGameHtml()
     })
 }

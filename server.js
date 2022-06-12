@@ -105,8 +105,11 @@ io.on("connection", (socket) => {
     })
 
     socket.on("generatedBlockProperties", (arrayOfObjectsOfBlockProperties) => {
-        console.log(arrayOfObjectsOfBlockProperties)
         socket.broadcast.in(id).emit("generatedBlockProperties", arrayOfObjectsOfBlockProperties)
+    })
+
+    socket.on("enter the game arena", (roomId) => {
+        socket.broadcast.in(roomId).emit("enter the game arena")
     })
 
 })
