@@ -38,7 +38,6 @@ socket.on("disconnected player", (playerIndex, flag) => {
 
 
 socket.on("anyone connected", (connectedPlayersIndexes) => {
-    console.log(connectedPlayersIndexes)
     connectedPlayersIndexes?.forEach((element, index) => {
         if (element) {
             connectButtons[index].classList.add("active")
@@ -52,3 +51,4 @@ socket.on("anyone connected", (connectedPlayersIndexes) => {
 socket.on("enter the game arena", () => {
     insertGameHtml()
 })
+

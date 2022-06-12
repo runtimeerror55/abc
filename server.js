@@ -9,6 +9,7 @@ const io = require('socket.io')(server, {
 })
 let id = undefined
 let objecOfConnectedRooms = {}
+let objectOfConnectedSocketIds = {}
 
 
 
@@ -33,6 +34,7 @@ io.on("connection", (socket) => {
     socket.on("connect player", (roomId, playerIndex, matchTypeValue) => {
         id = roomId
         socket.join(roomId)
+
         if (!objecOfConnectedRooms.hasOwnProperty(roomId)) {
 
             objecOfConnectedRooms[roomId] = {
@@ -42,22 +44,56 @@ io.on("connection", (socket) => {
                 "gameOver": Array(matchTypeValue).fill(false)
             }
         }
+
+        if (!objectOfConnectedSocketIds.hasOwnProperty(socket.id)) {
+
+            objectOfConnectedSocketIds[socket.id] = {
+
+                "playerIndex": undefined,
+                "roomId": undefined
+            }
+        }
+
+        objectOfConnectedSocketIds[socket.id]["playerIndex"] = playerIndex
+        objectOfConnectedSocketIds[socket.id]["roomId"] = roomId
+
+
         objecOfConnectedRooms[roomId]["playerIndexes"][playerIndex] = true
         objecOfConnectedRooms[roomId]["connectedPlayers"]++
         io.to(socket.id).emit("connected player", playerIndex, objecOfConnectedRooms[roomId]["connectedPlayers"], true)
         socket.broadcast.in(id).emit("connected player", playerIndex, objecOfConnectedRooms[roomId]["connectedPlayers"], false)
 
-
-
     })
 
 
     socket.on("disconnect player", (roomId, playerIndex) => {
+
         objecOfConnectedRooms[roomId]["playerIndexes"][playerIndex] = false
         objecOfConnectedRooms[roomId]["connectedPlayers"]--
+        objectOfConnectedSocketIds[socket.id]["playerIndex"] = undefined
         io.to(socket.id).emit("disconnected player", playerIndex, true)
         socket.broadcast.in(id).emit("disconnected player", playerIndex, false)
 
+    })
+
+    socket.on("disconnect", () => {
+        if (objectOfConnectedSocketIds[socket.id] != undefined) {
+
+            if (objectOfConnectedSocketIds[socket.id]["playerIndex"] != undefined) {
+
+                objecOfConnectedRooms[objectOfConnectedSocketIds[socket.id]["roomId"]]["playerIndexes"][objectOfConnectedSocketIds[socket.id]["playerIndex"]] = false
+            }
+
+            objecOfConnectedRooms[objectOfConnectedSocketIds[socket.id]["roomId"]]["connectedPlayers"]--
+            socket.broadcast.in(objectOfConnectedSocketIds[socket.id]["roomId"]).emit("disconnected player", objectOfConnectedSocketIds[socket.id]["playerIndex"], false)
+
+            if (!objecOfConnectedRooms[objectOfConnectedSocketIds[socket.id]["roomId"]]["connectedPlayers"]) {
+
+                delete objecOfConnectedRooms[objectOfConnectedSocketIds[socket.id]["roomId"]]
+            }
+
+            delete objectOfConnectedSocketIds[socket.id]
+        }
     })
 
 
