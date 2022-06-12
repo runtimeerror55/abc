@@ -14,13 +14,7 @@ function insertGameHtml() {
 
                                             <!-- gbuc = game-buttons-container -->
                                             <div class="${arrayOfPlayers[playerIndex]}gbuc gbuc">
-                                                <div class="${arrayOfPlayers[playerIndex]}score score">
-                                                    score</div>
-                                                <div class="${arrayOfPlayers[playerIndex]}play play">
-                                                    play</div>
-                                                <div class="${arrayOfPlayers[playerIndex]}restart restart">
-                                                    restart
-                                                </div>
+                                               ${insertButtonsHtml(playerIndex)}
 
                                             </div>
                                         </div>
@@ -144,4 +138,24 @@ function insertGameHtml() {
     loadJsDynamically("/gameFiles/js/startTheGame.js")
     loadJsDynamically("/gameFiles/js/socket.js")
     loadJsDynamically("/gameFiles/js/main.js")
+}
+
+
+function insertButtonsHtml(playerIndex) {
+    if (playerIndex == 0) {
+        return `<div class="${arrayOfPlayers[playerIndex]}score score">
+        score</div>
+    <div class="${arrayOfPlayers[playerIndex]}play play">
+        play</div>
+    <div class="${arrayOfPlayers[playerIndex]}reset reset">
+        reset
+    </div>`
+    }
+    else {
+        return `  <div class="${arrayOfPlayers[playerIndex]}score score">
+        score</div>
+    <div class="${arrayOfPlayers[playerIndex]}ready ready">
+        ready
+    </div>`
+    }
 }
