@@ -99,18 +99,24 @@ function generateBlockProperties() {
             "color": arrayOfColorClasses[randomBlockIndex]
         }
     }
+    socket.emit("generatedBlockProperties", arrayOfObjectsOfBlockProperties)
 }
 
 function createArrayOftotalNoOfBlocksInEachRow() {
+
     arrayOftotalNoOfBlocksInEachRow = new Array(25)
+
     for (let i = 0; i < 25; i++) {
+
         arrayOftotalNoOfBlocksInEachRow[i] = 0
     }
 }
 
 
 function refreshArrayOftotalNoOfBlocksInEachRow() {
+
     for (let i = 0; i < 25; i++) {
+
         arrayOftotalNoOfBlocksInEachRow[i] = 0
     }
 }
@@ -120,5 +126,46 @@ function createArrayOfPlayersGameBoxContainer() {
     arrayOfPlayersGameBoxContainer = new Array(matchTypeValue)
     for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
         arrayOfPlayersGameBoxContainer[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}gbc`)
+    }
+}
+
+function createArrayOfPlayersGameOver() {
+
+    arrayOfPlayersGameOver = new Array(matchTypeValue)
+
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+
+        arrayOfPlayersGameOver[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}game-over`)
+    }
+}
+
+function removeBlockColorClasses() {
+
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+
+        for (let row = 0; row < 25; row++) {
+
+            for (let column = 0; column < 15; column++) {
+
+                let block = document.querySelector(`.${arrayOfPlayers[playerIndex]}row${row}column${column}`)
+                let position = block.className.search(/active[0-9]/)
+
+                if (position != -1) {
+
+                    let colorClass = block.className.substring(position, position + 7)
+                    block.classList.toggle(colorClass)
+                }
+            }
+        }
+    }
+}
+
+
+function createArrayOfPlayersScorebox() {
+    arrayOfPlayersScoreBox = new Array(matchTypeValue)
+
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+
+        arrayOfPlayersScoreBox[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}score`)
     }
 }

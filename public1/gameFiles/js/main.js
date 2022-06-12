@@ -1,12 +1,16 @@
 createArrayOfPlayersGameBoxContainer()
+createArrayOfPlayersGameOver()
 createDpArray()
 createGameBoxContent()
 addGameBoxContentEventListeners()
 createBinaryMatrix()
 addBodyEventListener()
-generateBlockProperties()
 addPlayButtonEventListeners()
 createArrayOftotalNoOfBlocksInEachRow()
+createArrayOfPlayersScorebox()
+if (isAdmin) {
+    generateBlockProperties()
+}
 
 
 

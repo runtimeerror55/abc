@@ -155,8 +155,14 @@ function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column) {
 
 
 function gameOver() {
-    gameOverNode = document.querySelector(`.${playerNumber}game-over`)
-    gameOverNode.style.height = "100vh"
+
+    arrayOfPlayersGameOver[playerIndexValue].style.height = "100vh"
     addResetButtonEventListeners()
     socket.emit("game over", roomIdInputvalue, playerIndexValue)
+}
+
+function updateScore(length) {
+    score += length * (100 * length)
+    arrayOfPlayersScoreBox[playerIndexValue].innerText = `${score}`
+    socket.emit("update score", playerIndexValue, score)
 }

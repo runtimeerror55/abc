@@ -2,6 +2,9 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
 
     if (flag) {
         playerNumber = arrayOfPlayers[playerIndex]
+        if (playerIndex == 0) {
+            isAdmin = true
+        }
         playerIndexValue = playerIndex
         disconnectButtons[playerIndex].style.display = "block"
     }
@@ -19,6 +22,9 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
 socket.on("disconnected player", (playerIndex, flag) => {
     if (flag) {
         playerNumber = ""
+        if (isAdmin) {
+            isAdmin = false
+        }
         playerIndexValue = -1
         disconnectButtons[playerIndex].style.display = "none"
 

@@ -1,5 +1,4 @@
 
-
 socket.on("joined", (payload) => {
 
     playerNumber = payload
@@ -35,28 +34,40 @@ socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber) =
 })
 
 socket.on("game over", (playerIndexValue) => {
-    gameOverNode = document.querySelector(`.${arrayOfPlayers[playerIndexValue]}game-over`)
-    gameOverNode.style.height = "100%"
+
+    arrayOfPlayersGameOver[playerIndexValue].style.height = "100%"
 })
 
 socket.on("can i reset", (payload) => {
     if (payload) {
-        arrayOfPlayers.forEach(element => {
-            gameOverNode = document.querySelector(`.${element}game-over`)
-            console.log(element, gameOverNode)
-            gameOverNode.style.height = "0"
+        arrayOfPlayersGameOver.forEach(element => {
+
+            element.style.height = "0"
         })
 
-        createGameBoxContent()
+        removeBlockColorClasses()
         refreshBinaryMatrix(binaryMatrix)
-        addGameBoxContentEventListeners()
         refreshArrayOftotalNoOfBlocksInEachRow()
+        if (isAdmin) {
+            generateBlockProperties()
+        }
+        currentBlockIndex = -1
+        score = 0
+        arrayOfPlayersScoreBox.forEach(element => {
+            element.innerText = "0"
+        })
+
     }
 })
 
 
-socket.on("update score", (playerNumber, score) => {
-    scoreBox = document.querySelector(`.${playerNumber}score`)
-    scoreBox.innerText = `${score}`
-    console.log(score)
+socket.on("update score", (playerIndexValue, score) => {
+
+    arrayOfPlayersScoreBox[playerIndexValue].innerText = `${score}`
+})
+
+
+socket.on("generatedBlockProperties", (payload) => {
+    console.log(payload)
+    arrayOfObjectsOfBlockProperties = payload
 })

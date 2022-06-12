@@ -30,7 +30,7 @@ io.on("connection", (socket) => {
         socket.join(roomId)
     })
 
-    socket.on("connect player", (roomId, playerIndex) => {
+    socket.on("connect player", (roomId, playerIndex, matchTypeValue) => {
         id = roomId
         socket.join(roomId)
         if (!objecOfConnectedRooms.hasOwnProperty(roomId)) {
@@ -38,8 +38,8 @@ io.on("connection", (socket) => {
             objecOfConnectedRooms[roomId] = {
 
                 "connectedPlayers": 0,
-                "playerIndexes": [false, false, false],
-                "gameOver": [false, false, false]
+                "playerIndexes": Array(matchTypeValue).fill(false),
+                "gameOver": Array(matchTypeValue).fill(false)
             }
         }
         objecOfConnectedRooms[roomId]["playerIndexes"][playerIndex] = true
@@ -86,7 +86,6 @@ io.on("connection", (socket) => {
     })
 
     socket.on("game over", (roomId, playerIndexValue) => {
-        console.log("game over")
         objecOfConnectedRooms[roomId]["gameOver"][playerIndexValue] = true
         socket.broadcast.in(id).emit("game over", playerIndexValue)
     })
@@ -95,12 +94,19 @@ io.on("connection", (socket) => {
         let ans = objecOfConnectedRooms[roomId]["gameOver"].every(element => {
             return element
         })
-        console.log(ans)
-        socket.emit("can i reset", ans)
+        io.to(roomId).emit("can i reset", ans)
+        if (ans) {
+            objecOfConnectedRooms[roomId]["gameOver"].fill(false)
+        }
     })
 
-    socket.on("update score", (playerNumber, score) => {
-        socket.broadcast.in(id).emit("update score", playerNumber, score)
+    socket.on("update score", (playerIndexValue, score) => {
+        socket.broadcast.in(id).emit("update score", playerIndexValue, score)
+    })
+
+    socket.on("generatedBlockProperties", (arrayOfObjectsOfBlockProperties) => {
+        console.log(arrayOfObjectsOfBlockProperties)
+        socket.broadcast.in(id).emit("generatedBlockProperties", arrayOfObjectsOfBlockProperties)
     })
 
 })

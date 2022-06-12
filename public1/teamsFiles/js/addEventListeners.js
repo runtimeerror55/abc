@@ -2,7 +2,7 @@ function addConnectButtonsEventListeners() {
     connectButtons.forEach((element, index) => {
         element.addEventListener("click", function () {
             if (!connectButtons[index].classList.contains("active") && playerNumber == "") {
-                socket.emit("connect player", roomIdInputvalue, index)
+                socket.emit("connect player", roomIdInputvalue, index, matchTypeValue)
             }
         })
     });

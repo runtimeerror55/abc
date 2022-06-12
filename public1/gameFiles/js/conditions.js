@@ -31,13 +31,13 @@ function isRowFull(currentCoordinates) {
 
         socket.emit("destroy", fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, false)
         destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, true)
+        if (fullRows.length) {
+            updateScore(fullRows.length)
+        }
 
     }
 
-    score += fullRows.length * (100 * fullRows.length)
-    scoreBox = document.querySelector(`.${playerNumber}score`)
-    scoreBox.innerText = `${score}`
-    socket.emit("update score", playerNumber, score)
+
 
 }
 

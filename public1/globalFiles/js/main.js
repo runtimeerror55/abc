@@ -6,6 +6,7 @@ let roomIdInputvalue = ""
 let playerIndexValue = -1
 let matchTypeValue = 2
 let playersHtml = ""
+let isAdmin = false
 
 
 

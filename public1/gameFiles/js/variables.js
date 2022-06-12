@@ -19,7 +19,7 @@ let windowBreak = new Audio('/gameFiles/sound/windowBreak.mp3')
 let glassBreak = new Audio('/gameFiles/sound/glassBreak.mp3')
 let score = 0
 let play = undefined
-let scoreBox = undefined
+let arrayOfPlayersScoreBox = undefined
 let binaryMatrix = undefined
 let coordinatesOfShapes = [
 
@@ -39,7 +39,7 @@ let currentCoordinates = [[0, 5], [1, 5], [2, 5], [2, 6]]
 let arrayOfObjectsOfBlockProperties = new Array(1000)
 let arrayOfColorClasses = ["active0", "active1", "active2", "active3", "active4"]
 let currentBlockIndex = -1
-let gameOverNode = undefined
+let arrayOfPlayersGameOver = undefined
 let playerButton = undefined
 let resetButton = undefined
 let arrayOftotalNoOfBlocksInEachRow = undefined
