@@ -14,7 +14,7 @@ let objectOfConnectedSocketIds = {}
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public1/indexFiles/html/index.html');
+    res.sendFile(__dirname + '/public/indexFiles/html/index.html');
 });
 
 app.set('views engine', 'ejs')
