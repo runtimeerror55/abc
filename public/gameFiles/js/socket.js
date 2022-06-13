@@ -71,3 +71,10 @@ socket.on("generatedBlockProperties", (payload) => {
     console.log(payload)
     arrayOfObjectsOfBlockProperties = payload
 })
+
+socket.on("can i start the game", (areAllPlayersConnected, isGameStarted) => {
+    if (areAllPlayersConnected && !isGameStarted) {
+        start()
+    }
+
+})

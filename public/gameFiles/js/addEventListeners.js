@@ -93,7 +93,7 @@ function addResetButtonEventListeners() {
 function addPlayButtonEventListeners() {
     playerButton = document.querySelector(`.${playerNumber}play`)
     playerButton.addEventListener("click", () => {
-        start()
+        socket.emit("can i start the game", roomIdInputvalue)
     })
 }
 

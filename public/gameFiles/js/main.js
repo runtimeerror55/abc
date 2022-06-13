@@ -5,11 +5,11 @@ createGameBoxContent()
 addGameBoxContentEventListeners()
 createBinaryMatrix()
 addBodyEventListener()
-addPlayButtonEventListeners()
 createArrayOftotalNoOfBlocksInEachRow()
 createArrayOfPlayersScorebox()
 if (isAdmin) {
     generateBlockProperties()
+    addPlayButtonEventListeners()
 }
 
 

@@ -12,10 +12,11 @@ body {
 }
 
 .article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+}
+
+section {
+    width: 100%;
 }
 
 .gac {
@@ -55,8 +56,8 @@ body {
 }
 
 .reset {
-    border: 2px solid rgba(255, 0, 0, 1);
-    background-color: rgba(255, 0, 0, 0.5);
+    border: 2px solid rgba(128, 0, 128, 1);
+    background-color: rgba(128, 0, 128, 0.5);
 }
 
 
@@ -294,10 +295,4 @@ body {
     font-size: large;
     color: white;
     overflow: hidden;
-}
-
-
-.reset {
-    border: 2px solid rgba(0, 255, 0, 1);
-    background-color: rgba(0, 255, 0, 0.5);
 }

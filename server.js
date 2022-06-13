@@ -41,7 +41,9 @@ io.on("connection", (socket) => {
 
                 "connectedPlayers": 0,
                 "playerIndexes": Array(matchTypeValue).fill(false),
-                "gameOver": Array(matchTypeValue).fill(false)
+                "gameOver": Array(matchTypeValue).fill(false),
+                "game started": false,
+                "matchTypeValue": matchTypeValue
             }
         }
 
@@ -146,6 +148,20 @@ io.on("connection", (socket) => {
 
     socket.on("enter the game arena", (roomId) => {
         socket.broadcast.in(roomId).emit("enter the game arena")
+    })
+
+    socket.on("can i start the game", (roomId) => {
+
+
+        let areAllPlayersConnected = objecOfConnectedRooms[roomId]["connectedPlayers"] == objecOfConnectedRooms[roomId]["matchTypeValue"]
+        console.log(areAllPlayersConnected, objecOfConnectedRooms[roomId]["matchTypeValue"])
+        let isGameStarted = objecOfConnectedRooms[roomId]["game started"]
+        io.to(roomId).emit("can i start the game", areAllPlayersConnected, isGameStarted)
+
+        if (areAllPlayersConnected && !isGameStarted) {
+
+            objecOfConnectedRooms[roomId]["game started"] = true
+        }
     })
 
 })
