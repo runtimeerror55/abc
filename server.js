@@ -135,6 +135,7 @@ io.on("connection", (socket) => {
         io.to(roomId).emit("can i reset", ans)
         if (ans) {
             objecOfConnectedRooms[roomId]["gameOver"].fill(false)
+            objecOfConnectedRooms[roomId]["game started"] = false
         }
     })
 
@@ -154,7 +155,6 @@ io.on("connection", (socket) => {
 
 
         let areAllPlayersConnected = objecOfConnectedRooms[roomId]["connectedPlayers"] == objecOfConnectedRooms[roomId]["matchTypeValue"]
-        console.log(areAllPlayersConnected, objecOfConnectedRooms[roomId]["matchTypeValue"])
         let isGameStarted = objecOfConnectedRooms[roomId]["game started"]
         io.to(roomId).emit("can i start the game", areAllPlayersConnected, isGameStarted)
 

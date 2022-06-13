@@ -84,15 +84,17 @@ function addBodyEventListener() {
 function addResetButtonEventListeners() {
     resetButton = document.querySelector(`.${playerNumber}reset`)
     resetButton.addEventListener("click", () => {
-        socket.emit("can i reset", roomIdInputvalue)
+        if (isAdmin) {
+            socket.emit("can i reset", roomIdInputvalue)
+        }
     })
 }
 
 
 
 function addPlayButtonEventListeners() {
-    playerButton = document.querySelector(`.${playerNumber}play`)
-    playerButton.addEventListener("click", () => {
+    playButton = document.querySelector(`.${playerNumber}play`)
+    playButton.addEventListener("click", () => {
         socket.emit("can i start the game", roomIdInputvalue)
     })
 }

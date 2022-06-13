@@ -146,10 +146,7 @@ function insertButtonsHtml(playerIndex) {
         return `<div class="${arrayOfPlayers[playerIndex]}score score">
         score</div>
     <div class="${arrayOfPlayers[playerIndex]}play play">
-        play</div>
-    <div class="${arrayOfPlayers[playerIndex]}reset reset">
-        reset
-    </div>`
+        play</div>`
     }
     else {
         return `  <div class="${arrayOfPlayers[playerIndex]}score score">

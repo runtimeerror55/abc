@@ -68,7 +68,6 @@ socket.on("update score", (playerIndexValue, score) => {
 
 
 socket.on("generatedBlockProperties", (payload) => {
-    console.log(payload)
     arrayOfObjectsOfBlockProperties = payload
 })
 

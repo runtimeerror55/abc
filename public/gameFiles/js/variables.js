@@ -40,6 +40,6 @@ let arrayOfObjectsOfBlockProperties = new Array(1000)
 let arrayOfColorClasses = ["active0", "active1", "active2", "active3", "active4"]
 let currentBlockIndex = -1
 let arrayOfPlayersGameOver = undefined
-let playerButton = undefined
+let playButton = undefined
 let resetButton = undefined
 let arrayOftotalNoOfBlocksInEachRow = undefined
