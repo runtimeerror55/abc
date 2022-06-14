@@ -77,3 +77,11 @@ socket.on("can i start the game", (areAllPlayersConnected, isGameStarted) => {
     }
 
 })
+
+socket.on("toggle player ready state", (playerIndexValue, innerText) => {
+
+    arrayOfPlayersReadyButton[playerIndexValue].innerText = innerText
+    arrayOfPlayersReadyButton[playerIndexValue].classList.toggle("not-ready-active")
+
+
+})

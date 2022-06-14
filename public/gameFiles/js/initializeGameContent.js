@@ -169,3 +169,12 @@ function createArrayOfPlayersScorebox() {
         arrayOfPlayersScoreBox[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}score`)
     }
 }
+
+function createArrayOfPlayersReadyButton() {
+    arrayOfPlayersReadyButton = new Array(matchTypeValue)
+
+    for (let playerIndex = 1; playerIndex < matchTypeValue; playerIndex++) {
+
+        arrayOfPlayersReadyButton[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}ready`)
+    }
+}

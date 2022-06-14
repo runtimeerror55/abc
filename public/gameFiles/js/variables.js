@@ -43,3 +43,4 @@ let arrayOfPlayersGameOver = undefined
 let playButton = undefined
 let resetButton = undefined
 let arrayOftotalNoOfBlocksInEachRow = undefined
+let arrayOfPlayersReadyButton = undefined

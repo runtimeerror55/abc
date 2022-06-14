@@ -164,6 +164,10 @@ io.on("connection", (socket) => {
         }
     })
 
+    socket.on("toggle player ready state", (roomId, playerIndex, innerText) => {
+        socket.broadcast.in(roomId).emit("toggle player ready state", playerIndex, innerText)
+    })
+
 })
 
 

@@ -7,9 +7,13 @@ createBinaryMatrix()
 addBodyEventListener()
 createArrayOftotalNoOfBlocksInEachRow()
 createArrayOfPlayersScorebox()
+createArrayOfPlayersReadyButton()
 if (isAdmin) {
     generateBlockProperties()
     addPlayButtonEventListeners()
+}
+else {
+    addReadyButtonEventListeners()
 }
 
 

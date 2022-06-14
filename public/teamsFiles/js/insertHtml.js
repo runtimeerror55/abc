@@ -151,8 +151,8 @@ function insertButtonsHtml(playerIndex) {
     else {
         return `  <div class="${arrayOfPlayers[playerIndex]}score score">
         score</div>
-    <div class="${arrayOfPlayers[playerIndex]}ready ready">
-        ready
+    <div class="${arrayOfPlayers[playerIndex]}ready ready not-ready-active">
+        not ready
     </div>`
     }
 }

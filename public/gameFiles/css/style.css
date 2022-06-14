@@ -63,13 +63,13 @@ section {
 
 
 .ready {
-    border: 2px solid rgba(255, 0, 0, 1);
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
-.ready-active {
     border: 2px solid rgba(0, 255, 0, 1);
     background-color: rgba(0, 255, 0, 0.5);
+}
+
+.not-ready-active {
+    border: 2px solid rgba(255, 0, 0, 1);
+    background-color: rgba(255, 0, 0, 0.5)
 }
 
 .score,
