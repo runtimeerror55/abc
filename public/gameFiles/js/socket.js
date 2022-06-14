@@ -45,6 +45,11 @@ socket.on("can i reset", (payload) => {
             element.style.height = "0"
         })
 
+        arrayOfPlayersReadyButton.forEach(element => {
+            element.innerText = "not ready"
+            element.classList.toggle("not-ready-active")
+        })
+
         removeBlockColorClasses()
         refreshBinaryMatrix(binaryMatrix)
         refreshArrayOftotalNoOfBlocksInEachRow()
@@ -71,16 +76,21 @@ socket.on("generatedBlockProperties", (payload) => {
     arrayOfObjectsOfBlockProperties = payload
 })
 
-socket.on("can i start the game", (areAllPlayersConnected, isGameStarted) => {
-    if (areAllPlayersConnected && !isGameStarted) {
-        start()
-    }
+socket.on("you can start the game", () => {
 
+    start()
 })
 
-socket.on("toggle player ready state", (playerIndexValue, innerText) => {
+socket.on("you can toggle player ready state", (playerIndexValue) => {
 
-    arrayOfPlayersReadyButton[playerIndexValue].innerText = innerText
+
+    if (arrayOfPlayersReadyButton[playerIndexValue].classList.contains("not-ready-active")) {
+
+        arrayOfPlayersReadyButton[playerIndexValue].innerText = "ready"
+    }
+    else {
+        arrayOfPlayersReadyButton[playerIndexValue].innerText = "not ready"
+    }
     arrayOfPlayersReadyButton[playerIndexValue].classList.toggle("not-ready-active")
 
 

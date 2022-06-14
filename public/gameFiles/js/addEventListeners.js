@@ -101,17 +101,9 @@ function addPlayButtonEventListeners() {
 
 
 function addReadyButtonEventListeners() {
-    arrayOfPlayersReadyButton[playerIndexValue].addEventListener("click", (e) => {
+    arrayOfPlayersReadyButton[playerIndexValue].addEventListener("click", () => {
 
-        if (e.target.classList.contains("not-ready-active")) {
-            console.log(e.target.innerText)
-            e.target.innerText = "ready"
-        }
-        else {
-            e.target.innerText = "not ready"
-        }
-        e.target.classList.toggle("not-ready-active")
-        socket.emit("toggle player ready state", roomIdInputvalue, playerIndexValue, e.target.innerText)
+        socket.emit("can i toggle player ready state", roomIdInputvalue, playerIndexValue)
 
     })
 }
