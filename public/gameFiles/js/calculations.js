@@ -156,7 +156,7 @@ function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column) {
 
 function gameOver() {
 
-    arrayOfPlayersGameOver[playerIndexValue].style.height = "100vh"
+    arrayOfPlayersGameOver[playerIndexValue].style.height = "100%"
     addResetButtonEventListeners()
     socket.emit("game over", roomIdInputvalue, playerIndexValue)
 }

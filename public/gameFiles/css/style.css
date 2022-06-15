@@ -5,9 +5,11 @@ body {
     overflow: hidden;
 }
 
-.main {
+.articles-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 
 }
 
@@ -24,7 +26,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: max-content;
     margin: 0;
     flex-direction: column;
     width: max-content;
@@ -301,4 +303,14 @@ section {
     font-size: large;
     color: white;
     overflow: hidden;
+}
+
+
+.winner-message {
+    position: absolute;
+    width: 100vw;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
 }

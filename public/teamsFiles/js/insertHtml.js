@@ -6,7 +6,7 @@ function insertGameHtml() {
 
             `
 
-                            <article class="article ${arrayOfPlayers[playerIndex]}
+                            <article class="article"> ${arrayOfPlayers[playerIndex]}
                                 <!-- gac = game-area-container -->
                                 <div class="${arrayOfPlayers[playerIndex]}gac gac">
                                     <section>
@@ -126,7 +126,14 @@ function insertGameHtml() {
                             </article >
                             `
     }
-    body.innerHTML = `<main class="main">${playersHtml}</main>`
+    body.innerHTML = `<main class="main">
+                        <div class ="articles-container">
+                            ${playersHtml}
+                        </div>
+                        <section>
+                            <div class = "winner-message"></div>
+                        </section>
+                     </main>`
     loadJsDynamically("/gameFiles/js/directions.js")
     loadJsDynamically("/gameFiles/js/addAndToggleClass.js")
     loadJsDynamically("/gameFiles/js/initializeGameContent.js")
