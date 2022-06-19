@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/indexFiles/css/index.css">
+
+
+</head>
+
+<body class="body">
+
+    <main class="room-html">
+        <article>
+            <div class="container">
+                <div class="container__match-type-container">
+                    <select class="container__match-type" for>
+                        <option value="1">single player</option>
+                        <option value="2">1 vs 1</option>
+                        <option value="3">1 vs 1 vs 1</option>
+                        <option value="4">1 vs 1 vs 1 vs 1</option>
+                        <option value="5">2 vs 2</option>
+                    </select>
+                    <button class="container__match-type-button">match type</button>
+                </div>
+
+                <div class="container__create-container">
+                    <div class="container__room-id-output"></div>
+                    <button class="container__create-room-id-button">create room</button>
+                </div>
+                <div class="container__join-container">
+                    <input type="text" class="container__room-id-input">
+                    <button class="container__join-room-id-button">join room</button>
+                </div>
+            </div>
+        </article>
+    </main>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/globalFiles/js/main.js"></script>
+    <script src="/indexFiles/js/socket.js"></script>
+    <script src="indexFiles/js/variables.js"></script>
+    <script src="indexFiles/js/insertHtml.js"></script>
+    <script src="indexFiles/js/addEventListeners.js"></script>
+    <script src="indexFiles/js/index.js"></script>
+
+
+
+</body>
+
+</html>

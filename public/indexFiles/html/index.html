@@ -1,54 +1,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/indexFiles/css/index.css">
-
-
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+        content="322705013586-5e1jlbe8qhd4l9gfgfucvfc8blh9kg5h.apps.googleusercontent.com.apps.googleusercontent.com.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
-<body class="body">
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
 
-    <main class="room-html">
-        <article>
-            <div class="container">
-                <div class="container__match-type-container">
-                    <select class="container__match-type" for>
-                        <option value="1">single player</option>
-                        <option value="2">1 vs 1</option>
-                        <option value="3">1 vs 1 vs 1</option>
-                        <option value="4">1 vs 1 vs 1 vs 1</option>
-                        <option value="5">2 vs 2</option>
-                    </select>
-                    <button class="container__match-type-button">match type</button>
-                </div>
-
-                <div class="container__create-container">
-                    <div class="container__room-id-output"></div>
-                    <button class="container__create-room-id-button">create room</button>
-                </div>
-                <div class="container__join-container">
-                    <input type="text" class="container__room-id-input">
-                    <button class="container__join-room-id-button">join room</button>
-                </div>
-            </div>
-        </article>
-    </main>
-
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/globalFiles/js/main.js"></script>
-    <script src="/indexFiles/js/socket.js"></script>
-    <script src="indexFiles/js/variables.js"></script>
-    <script src="indexFiles/js/insertHtml.js"></script>
-    <script src="indexFiles/js/addEventListeners.js"></script>
-    <script src="indexFiles/js/index.js"></script>
-
-
-
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+        }
+    </script>
 </body>
 
 </html>
