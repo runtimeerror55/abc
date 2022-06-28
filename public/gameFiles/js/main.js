@@ -1,20 +1,32 @@
-createArrayOfPlayersGameBoxContainer()
-createArrayOfPlayersGameOver()
-createDpArray()
-createGameBoxContent()
-addGameBoxContentEventListeners()
-createBinaryMatrix()
-addBodyEventListener()
-createArrayOftotalNoOfBlocksInEachRow()
-createArrayOfPlayersScorebox()
-createArrayOfPlayersReadyButton()
-if (isAdmin) {
-    generateBlockProperties()
-    addPlayButtonEventListeners()
-}
-else {
-    addReadyButtonEventListeners()
-}
+initializeAllThings()
+
+
+
+
+
+
+
+
+
+
+
+// createArrayOfPlayersGameBoxContainer()
+// createArrayOfPlayersGameOver()
+// createDpArray()
+// createGameBoxContent()
+// addGameBoxContentEventListeners()
+// createBinaryMatrix()
+// addBodyEventListener()
+// createArrayOftotalNoOfBlocksInEachRow()
+// createArrayOfPlayersScorebox()
+// createArrayOfPlayersReadyButton()
+// if (isAdmin) {
+//     generateBlockProperties()
+//     addPlayButtonEventListeners()
+// }
+// else {
+//     addReadyButtonEventListeners()
+// }
 
 
 

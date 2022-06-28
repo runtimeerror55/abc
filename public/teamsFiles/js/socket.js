@@ -38,12 +38,12 @@ socket.on("disconnected player", (playerIndex, flag) => {
 
 
 socket.on("anyone connected", (connectedPlayersIndexes) => {
-    connectedPlayersIndexes?.forEach((element, index) => {
-        if (element) {
-            connectButtons[index].classList.add("active")
-            connectButtons[index].innerText = "connected"
-            disconnectButtons[index].style.display = "none"
-        }
+    connectedPlayersIndexes?.forEach((element) => {
+
+        connectButtons[element].classList.add("active")
+        connectButtons[element].innerText = "connected"
+        disconnectButtons[element].style.display = "none"
+
     });
 })
 

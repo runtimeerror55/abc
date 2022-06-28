@@ -1,9 +1,8 @@
-let socketId = ""
-let createRoomIdButton = document.querySelector('.container__create-room-id-button')
-let joinRoomIdButton = document.querySelector('.container__join-room-id-button')
-let roomIdOutput = document.querySelector('.container__room-id-output')
-let roomIdInput = document.querySelector('.container__room-id-input')
-let matchType = document.querySelector('.container__match-type')
-let players = ["one", "two", "three", "four"]
-
-
+let loader = document.querySelector(".loader")
+let loaderSvg = document.querySelector(".loader-svg")
+let navBar = document.querySelector('.nav-bar')
+let icons = document.querySelectorAll('.icon')
+let playOption = document.querySelector(".play-option")
+let statsOption = document.querySelector(".stats-option")
+let instructionsOption = document.querySelector(".instructions-option")
+let homeOption = document.querySelector(".home-option")

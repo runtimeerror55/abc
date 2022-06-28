@@ -1,5 +1,7 @@
 let body = document.querySelector('body')
-let cssLink = document.querySelector('link')
+let main = document.querySelector('main')
+let head = document.querySelector('head')
+let cssLink = document.querySelector('.main-css')
 let playerNumber = ""
 let arrayOfPlayers = ["player-one__", "player-two__", "player-three__"]
 let roomIdInputvalue = ""
@@ -7,6 +9,41 @@ let playerIndexValue = -1
 let matchTypeValue = 2
 let playersHtml = ""
 let isAdmin = false
+let mainElement = undefined
+
+let filePaths = {
+    "homePage": {
+        link: document.querySelector("homePage"),
+        filePath: "/indexFiles/css/style.css"
+    },
+    "gameSettingsPage": {
+        link: document.querySelector(".game-settings-page"),
+        filePath: "/gameSettingsFiles/css/style.css"
+    },
+    "teamsPage": {
+        link: document.querySelector(".teams-page"),
+        filePath: "/teamsFiles/css/style.css"
+    },
+    "gameArenaPage": {
+        link: document.querySelector(".game-arena-page"),
+        filePath: "/gameFiles/css/style.css"
+    },
+    "statsPage": {
+        link: document.querySelector(".stats-page"),
+        filePath: "/statsFiles/css/style.css"
+    },
+    "intstructionsPage": {
+        link: document.querySelector(".instructions-page"),
+        filePath: "/instructionsFiles/css/style.css"
+    }
+}
+let pageHistory = {
+    currentPage: document.querySelector(".home-page"),
+    currentPlayPage: undefined,
+    currentPlayPageCssFilePath: undefined,
+    optionsClicked: [true, false, false, false]
+}
+
 
 
 
@@ -25,6 +62,23 @@ function loadJsDynamically(filePath) {
     });
     // error event
     scriptElement.addEventListener("error", (ev) => {
+        console.log("Error on loading file", ev);
+    });
+}
+
+
+function loadCssDynamically(filePath) {
+    let linkElement = document.createElement('link')
+    linkElement.href = filePath
+    linkElement.rel = "stylesheet"
+    linkElement.async = false
+    head.appendChild(linkElement)
+    console.log(linkElement)
+    linkElement.addEventListener("load", (e) => {
+        console.log("File loaded", e.target)
+    });
+    // error event
+    linkElement.addEventListener("error", (ev) => {
         console.log("Error on loading file", ev);
     });
 }

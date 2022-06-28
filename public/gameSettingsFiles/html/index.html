@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/gameSettingsFiles/css/style.css">
+
+
+</head>
+
+<body class="body">
+
+    <main class="room-html">
+        <article>
+            <div class="stats">stats</div>
+            <div class="container">
+                <div class="container__match-type-container">
+                    <select class="container__match-type" for>
+                        <option value="1">single player</option>
+                        <option value="2">1 vs 1</option>
+                        <option value="3">1 vs 1 vs 1</option>
+                        <option value="4">1 vs 1 vs 1 vs 1</option>
+                        <option value="5">2 vs 2</option>
+                    </select>
+                    <button class="container__match-type-button">match type</button>
+                </div>
+
+                <div class="container__create-container">
+                    <div class="container__room-id-output"></div>
+                    <button class="container__create-room-id-button">create room</button>
+                </div>
+                <div class="container__join-container">
+                    <input type="text" class="container__room-id-input">
+                    <button class="container__join-room-id-button">join room</button>
+                </div>
+
+                <div class="container__account-container">
+                    <div class="container__sign-in"></div>
+                    <div class="container__sign-out">sign out</div>
+
+                </div>
+
+
+
+            </div>
+        </article>
+    </main>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/globalFiles/js/main.js"></script>
+    <script src="/gameSettingsFiles/js/socket.js"></script>
+    <script src="gameSettingsFiles/js/variables.js"></script>
+    <script src="gameSettingsFiles/js/insertHtml.js"></script>
+    <script src="gameSettingsFiles/js/addEventListeners.js"></script>
+    <script src="gameSettingsFiles/js/index.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="gameSettingsFiles/js/jwt-decode.js"></script>
+    <script src="gameSettingsFiles/js/googleAuthorization.js"></script>
+
+
+
+</body>
+
+</html>

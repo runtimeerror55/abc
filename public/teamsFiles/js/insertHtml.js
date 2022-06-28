@@ -126,24 +126,29 @@ function insertGameHtml() {
                             </article >
                             `
     }
-    body.innerHTML = `<main class="main">
+
+    let mainElement = document.createElement('main')
+    mainElement.classList.add("game-arena-page")
+    mainElement.innerHTML = `
                         <div class ="articles-container">
                             ${playersHtml}
                         </div>
                         <section>
                             <div class = "winner-message"></div>
                         </section>
-                     </main>`
+                     `
+    body.appendChild(mainElement)
+
+    loadJsDynamically("/gameFiles/js/variables.js")
     loadJsDynamically("/gameFiles/js/directions.js")
     loadJsDynamically("/gameFiles/js/addAndToggleClass.js")
-    loadJsDynamically("/gameFiles/js/initializeGameContent.js")
     loadJsDynamically("/gameFiles/js/addEventListeners.js")
     loadJsDynamically("/gameFiles/js/calculations.js")
     loadJsDynamically("/gameFiles/js/conditions.js")
     loadJsDynamically("/gameFiles/js/dpAlgorithm.js")
-    loadJsDynamically("/gameFiles/js/variables.js")
     loadJsDynamically("/gameFiles/js/startTheGame.js")
     loadJsDynamically("/gameFiles/js/socket.js")
+    loadJsDynamically("/gameFiles/js/initializeGameContent.js")
     loadJsDynamically("/gameFiles/js/main.js")
 }
 

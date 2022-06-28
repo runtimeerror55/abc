@@ -158,11 +158,11 @@ function gameOver() {
 
     arrayOfPlayersGameOver[playerIndexValue].style.height = "100%"
     addResetButtonEventListeners()
-    socket.emit("game over", roomIdInputvalue, playerIndexValue)
+    socket.emit("game over", roomIdInputvalue, playerIndexValue, score)
 }
 
 function updateScore(length) {
     score += length * (100 * length)
     arrayOfPlayersScoreBox[playerIndexValue].innerText = `${score}`
-    socket.emit("update score", playerIndexValue, score)
+    socket.emit("update score", roomIdInputvalue, playerIndexValue, score)
 }

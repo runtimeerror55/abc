@@ -23,12 +23,13 @@ body {
 .toc {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
     max-height: 400px;
+    overflow-y: scroll;
 }
 
 
-.heading-row {
+.heading-row,
+.i-h-r {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     letter-spacing: 1px;
@@ -37,19 +38,21 @@ body {
     color: white;
 }
 
-.row {
-    border-bottom: 1px solid rgb(227, 221, 221);
-    background-color: white;
+
+.row,
+.inner-row {
+    border-bottom: 1px solid rgb(139, 136, 136);
+    background-color: #737070;
+    color: white;
 }
 
+
 .column,
-.heading-column {
+.heading-column,
+.i-h-c,
+.inner-column {
     display: inline-block;
     width: 250px;
     padding: 15px;
 
-}
-
-.column {
-    color: #333;
 }

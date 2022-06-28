@@ -1,14 +1,14 @@
 function createDpArray() {
     dp = new Array(100)
-    for (let i = 0; i < 100; i++) {
+    for (i = 0; i < 100; i++) {
 
         dp[i] = new Array(60)
 
-        for (let j = 0; j < 60; j++) {
+        for (j = 0; j < 60; j++) {
 
             dp[i][j] = new Array(3)
 
-            for (let k = 0; k < 3; k++) {
+            for (k = 0; k < 3; k++) {
 
                 dp[i][j][k] = -1
             }
@@ -21,14 +21,14 @@ function createDpArray() {
 
 function createBinaryMatrix() {
     binaryMatrix = new Array(25)
-    for (let i = 0; i < 25; i++) {
+    for (i = 0; i < 25; i++) {
 
         binaryMatrix[i] = new Array(16)
     }
 
-    for (let i = 0; i < 25; i++) {
+    for (i = 0; i < 25; i++) {
 
-        for (let j = 0; j < 16; j++) {
+        for (j = 0; j < 16; j++) {
 
             binaryMatrix[i][j] = 0
         }
@@ -38,21 +38,21 @@ function createBinaryMatrix() {
 
 function createGameBoxContent() {
 
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
         arrayOfPlayersGameBoxContainer[playerIndex].innerHTML = ""
-        for (let row = 0; row < 25; row++) {
+        for (row = 0; row < 25; row++) {
 
 
-            let createRow = document.createElement("div")
-            let laserBeam = document.createElement("span")
+            createRow = document.createElement("div")
+            laserBeam = document.createElement("span")
             laserBeam.classList.add('laser-beam', `${arrayOfPlayers[playerIndex]}laser-beam-row${row}`)
             createRow.appendChild(laserBeam)
             createRow.classList.add('rows', `${arrayOfPlayers[playerIndex]}row${row}`)
             arrayOfPlayersGameBoxContainer[playerIndex].appendChild(createRow)
 
-            for (let column = 0; column < 15; column++) {
+            for (column = 0; column < 15; column++) {
 
-                let createColumn = document.createElement("span")
+                createColumn = document.createElement("div")
                 createColumn.classList.add('small-boxes', `${arrayOfPlayers[playerIndex]}small-boxes`, `${arrayOfPlayers[playerIndex]}row${row}column${column}`)
                 createRow.appendChild(createColumn)
 
@@ -64,11 +64,11 @@ function createGameBoxContent() {
 
 function refreshTheDpArray(dp) {
 
-    for (let i = 0; i < 100; i++) {
+    for (i = 0; i < 100; i++) {
 
-        for (let j = 0; j < 60; j++) {
+        for (j = 0; j < 60; j++) {
 
-            for (let k = 0; k < 3; k++) {
+            for (k = 0; k < 3; k++) {
                 dp[i][j][k] = -1
             }
 
@@ -78,9 +78,9 @@ function refreshTheDpArray(dp) {
 
 
 function refreshBinaryMatrix(binaryMatrix) {
-    for (let i = 0; i < 25; i++) {
+    for (i = 0; i < 25; i++) {
 
-        for (let j = 0; j < 16; j++) {
+        for (j = 0; j < 16; j++) {
 
             binaryMatrix[i][j] = 0
         }
@@ -89,10 +89,11 @@ function refreshBinaryMatrix(binaryMatrix) {
 
 
 function generateBlockProperties() {
+    arrayOfObjectsOfBlockProperties = new Array(1000)
+    arrayOfColorClasses
+    for (i = 0; i < 1000; i++) {
 
-    for (let i = 0; i < 1000; i++) {
-
-        let randomBlockIndex = Math.floor(Math.random() * 5)
+        randomBlockIndex = Math.floor(Math.random() * 5)
         arrayOfObjectsOfBlockProperties[i] = {
 
             "coordinates": coordinatesOfShapes[randomBlockIndex],
@@ -106,7 +107,7 @@ function createArrayOftotalNoOfBlocksInEachRow() {
 
     arrayOftotalNoOfBlocksInEachRow = new Array(25)
 
-    for (let i = 0; i < 25; i++) {
+    for (i = 0; i < 25; i++) {
 
         arrayOftotalNoOfBlocksInEachRow[i] = 0
     }
@@ -115,7 +116,7 @@ function createArrayOftotalNoOfBlocksInEachRow() {
 
 function refreshArrayOftotalNoOfBlocksInEachRow() {
 
-    for (let i = 0; i < 25; i++) {
+    for (i = 0; i < 25; i++) {
 
         arrayOftotalNoOfBlocksInEachRow[i] = 0
     }
@@ -124,7 +125,7 @@ function refreshArrayOftotalNoOfBlocksInEachRow() {
 
 function createArrayOfPlayersGameBoxContainer() {
     arrayOfPlayersGameBoxContainer = new Array(matchTypeValue)
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
         arrayOfPlayersGameBoxContainer[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}gbc`)
     }
 }
@@ -133,7 +134,7 @@ function createArrayOfPlayersGameOver() {
 
     arrayOfPlayersGameOver = new Array(matchTypeValue)
 
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
 
         arrayOfPlayersGameOver[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}game-over`)
     }
@@ -141,18 +142,18 @@ function createArrayOfPlayersGameOver() {
 
 function removeBlockColorClasses() {
 
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
 
-        for (let row = 0; row < 25; row++) {
+        for (row = 0; row < 25; row++) {
 
-            for (let column = 0; column < 15; column++) {
+            for (column = 0; column < 15; column++) {
 
-                let block = document.querySelector(`.${arrayOfPlayers[playerIndex]}row${row}column${column}`)
-                let position = block.className.search(/active[0-9]/)
+                block = document.querySelector(`.${arrayOfPlayers[playerIndex]}row${row}column${column}`)
+                position = block.className.search(/active[0-9]/)
 
                 if (position != -1) {
 
-                    let colorClass = block.className.substring(position, position + 7)
+                    colorClass = block.className.substring(position, position + 7)
                     block.classList.toggle(colorClass)
                 }
             }
@@ -164,7 +165,7 @@ function removeBlockColorClasses() {
 function createArrayOfPlayersScorebox() {
     arrayOfPlayersScoreBox = new Array(matchTypeValue)
 
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
 
         arrayOfPlayersScoreBox[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}score`)
     }
@@ -173,8 +174,94 @@ function createArrayOfPlayersScorebox() {
 function createArrayOfPlayersReadyButton() {
     arrayOfPlayersReadyButton = new Array(matchTypeValue)
 
-    for (let playerIndex = 1; playerIndex < matchTypeValue; playerIndex++) {
+    for (playerIndex = 1; playerIndex < matchTypeValue; playerIndex++) {
 
         arrayOfPlayersReadyButton[playerIndex] = document.querySelector(`.${arrayOfPlayers[playerIndex]}ready`)
     }
+}
+
+
+
+function initializeDomVariables() {
+
+    resetButton = document.querySelector(`.${playerNumber}reset`)
+    playButton = document.querySelector(`.${playerNumber}play`)
+    createArrayOfPlayersGameBoxContainer()
+    createArrayOfPlayersGameOver()
+    createArrayOfPlayersScorebox()
+    createArrayOfPlayersReadyButton()
+}
+
+function initializeAllVariables() {
+
+    initializeDomVariables()
+    createDpArray()
+    createBinaryMatrix()
+    createArrayOftotalNoOfBlocksInEachRow()
+    currentDpTrueCoordinates = -1
+    arrayOfColorClasses = ["active0", "active1", "active2", "active3", "active4"]
+    currentBlockIndex = -1
+    coordinatesOfShapes = [
+
+        [[0, 5], [1, 5], [2, 5], [2, 6]], // l shape
+
+        [[0, 5], [0, 6], [0, 7], [1, 6]], // t shape
+
+        [[0, 5], [0, 6], [1, 5], [1, 6]], // square
+
+        [[0, 5], [0, 6], [0, 7], [0, 8]], // line shape
+
+        [[0, 5], [1, 5], [1, 6], [2, 6]] // skew shape
+    ]
+    currentCoordinates = [[0, 5], [1, 5], [2, 5], [2, 6]]
+    randomShape = Math.floor(Math.random() * 5)
+    mouseCoordinates = [-1, -1]
+    blockColor = -1
+    isDpTrue = false
+    dpInterval = undefined
+    previous = -1
+    score = 0
+    play = undefined
+    if (isAdmin) {
+        generateBlockProperties()
+    }
+
+}
+
+function initializeAllEventListeners() {
+
+    addGameBoxContentEventListeners()
+    addBodyEventListener()
+    if (isAdmin) {
+        addPlayButtonEventListeners()
+    }
+    else {
+        addReadyButtonEventListeners()
+    }
+}
+
+function initializeAllSoundFiles() {
+
+    clear = new Audio('/gameFiles/sound/clear.wav');
+    fall = new Audio('/gameFiles/sound/fall.wav')
+    selection = new Audio('/gameFiles/sound/selection.wav')
+    fireball = new Audio('/gameFiles/sound/fireball.wav')
+    bump = new Audio('/gameFiles/sound/bump.wav')
+    whipShot = new Audio('/gameFiles/sound/whipShot.wav')
+    laserGunShot = new Audio('/gameFiles/sound/laserGunShot.wav')
+    laserInSpace = new Audio('/gameFiles/sound/laserInSpace.wav')
+    fallingHit = new Audio('/gameFiles/sound/fallingHit.wav')
+    windowBreak = new Audio('/gameFiles/sound/windowBreak.mp3')
+    glassBreak = new Audio('/gameFiles/sound/glassBreak.mp3')
+
+
+}
+
+function initializeAllThings() {
+
+    initializeAllVariables()
+    createGameBoxContent()
+    initializeAllEventListeners()
+    initializeAllSoundFiles()
+
 }

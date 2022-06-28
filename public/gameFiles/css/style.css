@@ -1,8 +1,17 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.game-arena-page {
 
     margin: 0;
     background-color: rgba(0, 0, 0, 1);
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
 .articles-container {
@@ -125,17 +134,17 @@ section {
 
 
 .gbc {
-    height: 600px;
-    width: 360px;
-    border: 8px dashed rgba(13, 122, 181, 1);
-    background-color: rgba(13, 122, 181, 0.5);
-
+    height: 608px;
+    width: 368px;
+    border: 4px dashed rgba(0, 255, 255, 1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 1);
 
 
 }
 
 .rows {
-    position: relative
+    position: relative;
+    height: 24px;
 }
 
 
@@ -228,9 +237,9 @@ section {
 
 .small-boxes {
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(0, 0, 0, 0.5);
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgb(43 39 39);
     margin: 1px;
     border-radius: 3px;
     transition: transform 0.2s ease-in-out;
