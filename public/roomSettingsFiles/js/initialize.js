@@ -34,5 +34,6 @@ function initializeRoomSettingsPageAllThings() {
 
     initializeRoomSettingsPageAllVariables()
     initializeRoomSettingsPageAllEventListeners()
+    initializeGoogleAuthentication()
 
 }

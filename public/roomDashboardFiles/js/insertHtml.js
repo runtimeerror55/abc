@@ -147,7 +147,8 @@ function insertGameHtml() {
     // loadJsDynamically("/gameFiles/js/startTheGame.js")
     // loadJsDynamically("/gameFiles/js/socket.js")
     // loadJsDynamically("/gameFiles/js/initializeGameContent.js")
-    loadJsDynamically("/gameFiles/js/main.js")
+    // loadJsDynamically("/gameFiles/js/main.js")
+    initializeGameArenaPageAllThings()
 }
 
 
@@ -168,7 +169,7 @@ function insertButtonsHtml(playerIndex) {
 }
 
 
-function insertTeamsDashboardHtml() {
+function insertRoomDashboardPageTeamsdHtml() {
 
     for (let i = 0; i < matchTypeValue; i++) {
 

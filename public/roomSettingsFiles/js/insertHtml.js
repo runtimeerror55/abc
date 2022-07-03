@@ -63,13 +63,14 @@ function insertRoomDashboardHtml() {
             
             `
 
-    cssLink.href = "/teamsFiles/css/style.css"
+    cssLink.href = "/roomDashboardFiles/css/style.css"
     // loadJsDynamically("/teamsFiles/js/socket.js")
     // loadJsDynamically("/teamsFiles/js/variables.js")
     // loadJsDynamically("/teamsFiles/js/insertHtml.js")
     // loadJsDynamically("/teamsFiles/js/addEventListeners.js")
     // loadJsDynamically("/teamsFiles/js/initialize.js")
-    loadJsDynamically("/teamsFiles/js/main.js")
+    // loadJsDynamically("/teamsFiles/js/main.js")
+    initializeRommDashboardPageAllthings()
 
 
 }

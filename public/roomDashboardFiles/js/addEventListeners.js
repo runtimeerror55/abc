@@ -22,25 +22,39 @@ function addDisconnectButtonsEventListeners() {
 
 function addGoButtonEventListeners() {
     goButton.addEventListener("click", () => {
-        socket.emit("enter the game arena", roomIdInputvalue)
 
-        pageHistory.currentPage.style.display = "none"
-        insertGameHtml()
-        pageHistory.currentPage = document.querySelector(".game-arena-page")
-        pageHistory.currentPlayPage = pageHistory.currentPage
-        pageHistory.currentPlayPageCssFilePath = "/gameFiles/css/style.css"
+        transitionUpward()
+        setTimeout(() => {
 
+            socket.emit("enter the game arena", roomIdInputvalue)
+            insertGameHtml()
+            pageHistory.currentPage.style.display = "none"
+            pageHistory.currentPage = document.querySelector(".game-arena-page")
+            pageHistory.currentPage.style.display = "block"
+            pageHistory.currentPlayPage = pageHistory.currentPage
+            pageHistory.currentPlayPageCssFilePath = "/gameFiles/css/style.css"
+        }, 500)
+        setTimeout(transitionClose, 2000)
     })
 }
 
 
 function addApplySettingsButtonEventListeners() {
     applySettingsButton.addEventListener("click", () => {
-        matchTypeValue = Number(matchType.value)
-        insertTeamsDashboardHtml()
-        initializeRommDashboardPageTeamsDomVariables()
-        initializeRommDashboardPageTeamsDashBoardEventListeners()
-        initializeAnyoneConnected()
+
+        transitionUpward()
+        setTimeout(() => {
+
+            matchTypeValue = Number(matchType.value)
+            if (playerIndexValue != -1) {
+                socket.emit("disconnect player", roomIdInputvalue, playerIndexValue)
+            }
+            insertRoomDashboardPageTeamsdHtml()
+            initializeRommDashboardPageTeamsDomVariables()
+            initializeRommDashboardPageTeamsDashBoardEventListeners()
+            initializeAnyoneConnected()
+        }, 500)
+        setTimeout(transitionClose, 2000)
     })
 }
 
@@ -50,8 +64,8 @@ function addExitRoomButtonEventListeners() {
         pageHistory.currentPage.style.display = "none"
         pageHistory.currentPage = document.querySelector(".room-settings-page")
         pageHistory.currentPage.style.display = "block"
-        cssLink.href = "/gameSettingsFiles/css/style.css"
-        pageHistory.currentPlayPageCssFilePath = "/gameSettingsFiles/css/style.css"
+        cssLink.href = "/roomSettingsFiles/css/style.css"
+        pageHistory.currentPlayPageCssFilePath = "/roomSettingsFiles/css/style.css"
         pageHistory.currentPlayPage = pageHistory.currentPage
 
         roomIdInputvalue = ""

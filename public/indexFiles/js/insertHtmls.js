@@ -37,9 +37,10 @@ function insertRoomSettingsHtml() {
     // loadJsDynamically("/roomSettingsFiles/js/insertHtml.js")
     // loadJsDynamically("/roomSettingsFiles/js/addEventListeners.js")
     // loadJsDynamically("/roomSettingsFiles/js/initialize.js")
-    loadJsDynamically("/roomSettingsFiles/js/index.js")
-    loadJsDynamically("/roomSettingsFiles/js/jwt-decode.js")
-    loadJsDynamically("/roomSettingsFiles/js/googleAuthorization.js")
+    // loadJsDynamically("/roomSettingsFiles/js/index.js")
+    // loadJsDynamically("/roomSettingsFiles/js/jwt-decode.js")
+    // loadJsDynamically("/roomSettingsFiles/js/googleAuthorization.js")
+    initializeRoomSettingsPageAllThings()
 
 }
 

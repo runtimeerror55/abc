@@ -14,7 +14,7 @@ function onSignIn(response) {
     }
 
 }
-function initialize() {
+function initializeGoogleAuthentication() {
     google.accounts.id.initialize({
         client_id: "322705013586-5e1jlbe8qhd4l9gfgfucvfc8blh9kg5h.apps.googleusercontent.com",
         callback: onSignIn,
@@ -29,4 +29,3 @@ function initialize() {
 
 }
 
-initialize()

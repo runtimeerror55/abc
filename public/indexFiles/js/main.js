@@ -1,24 +1,23 @@
 
 function transitionUpward() {
 
-    toggleClass(loader, "loader-active1")
+    loaderToggleClass(loader, "loader-active1")
     setTimeout(() => {
-        toggleClass(loaderSvg, "loader-svg-active1")
+        loaderToggleClass(loaderSvg, "loader-svg-active1")
     }, 500)
 
 }
 
 function transitionClose() {
 
-    toggleClass(loader, "loader-active1");
-    toggleClass(loaderSvg, "loader-svg-active1");
-    toggleClass(body, "body-active1");
-    toggleClass(navBar, "nav-bar-active1")
+    loaderToggleClass(loader, "loader-active1");
+    loaderToggleClass(loaderSvg, "loader-svg-active1");
+    loaderToggleClass(navBar, "nav-bar-active1")
 }
 
 
 
-function toggleClass(element, className) {
+function loaderToggleClass(element, className) {
     element.classList.toggle(className)
 }
 

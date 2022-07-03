@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.set('views engine', 'ejs')
 app.use('/indexFiles', express.static('public/indexFiles'))
 app.use('/roomSettingsFiles', express.static('public/roomSettingsFiles'))
-app.use('/teamsFiles', express.static('public/teamsFiles'))
+app.use('/roomDashboardFiles', express.static('public/roomDashboardFiles'))
 app.use('/gameFiles', express.static('public/gameFiles'))
 app.use('/statsFiles', express.static('public/statsFiles'))
 app.use('/globalFiles', express.static('public/globalFiles'))
@@ -119,8 +119,8 @@ io.on("connection", (socket) => {
 
                 let playerIndexes
                 if (connectedRooms[roomId] != undefined) {
-                        console.log(connectedRooms[roomId]["connectedPlayersDetails"])
-                        playerIndexes = Object.values(connectedRooms[roomId]["connectedPlayersDetails"]).map(element => element["playerIndex"])
+                        console.log(Object.values(connectedRooms[roomId]["connectedPlayersDetails"]))
+                        playerIndexes = Object.values(connectedRooms[roomId]["connectedPlayersDetails"]).map(element => element["playerNumber"])
                 }
                 io.to(socket.id).emit("anyone connected", playerIndexes)
         })

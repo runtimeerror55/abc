@@ -19,15 +19,17 @@ function addRoomButtonsEventListeners() {
         else {
 
 
-            insertRoomDashboardHtml()
-            pageHistory.currentPage.style.display = "none"
-            pageHistory.currentPage = document.querySelector(".room-dashboard-page")
-            pageHistory.currentPlayPage = pageHistory.currentPage
-            pageHistory.currentPlayPageCssFilePath = "/teamsFiles/css/style.css"
+            transitionUpward()
+            setTimeout(() => {
 
-
-
-
+                insertRoomDashboardHtml()
+                pageHistory.currentPage.style.display = "none"
+                pageHistory.currentPage = document.querySelector(".room-dashboard-page")
+                pageHistory.currentPage.style.display = "block"
+                pageHistory.currentPlayPage = pageHistory.currentPage
+                pageHistory.currentPlayPageCssFilePath = "/roomDashboardFiles/css/style.css"
+            }, 500)
+            setTimeout(transitionClose, 2000)
         }
     })
 }

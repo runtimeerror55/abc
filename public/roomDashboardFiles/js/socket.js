@@ -39,6 +39,7 @@ socket.on("disconnected player", (playerIndex, flag) => {
 
 
 socket.on("anyone connected", (connectedPlayersIndexes) => {
+    console.log(connectedPlayersIndexes)
     connectedPlayersIndexes?.forEach((element) => {
 
         connectButtons[element].classList.add("active")
@@ -50,9 +51,11 @@ socket.on("anyone connected", (connectedPlayersIndexes) => {
 
 
 socket.on("enter the game arena", () => {
-    pageHistory.currentPage.style.display = "none"
+
     insertGameHtml()
+    pageHistory.currentPage.style.display = "none"
     pageHistory.currentPage = document.querySelector(".game-arena-page")
+    pageHistory.currentPage.style.display = "block"
     pageHistory.currentPlayPage = pageHistory.currentPage
     pageHistory.currentPlayPageCssFilePath = "/gameFiles/css/style.css"
 })
