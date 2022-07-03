@@ -1,16 +1,30 @@
-function initializeDomVariables() {
+function initializeRommDashboardPageDomVariables() {
+
+
+    matchType = document.querySelector(".g-s-c__match-type")
+    roomDashboardPageArticlesContainer = document.querySelector(".articles-container")
+    teamsContainer = undefined
+    exitRoomButton = document.querySelector(".g-s-c__exit-room")
+    applySettingsButton = document.querySelector(".g-s-c__apply-button")
+}
+
+function initializeRommDashboardPageTeamsDomVariables() {
+
     connectButtons = document.querySelectorAll('.teams-container__connect-button')
     disconnectButtons = document.querySelectorAll('.teams-container__disconnect-button')
     goButton = document.querySelector(".go-button")
-
 }
 
-function initializeAllVariables() {
-    initializeDomVariables()
+function initializeRommDashboardPageAllVariables() {
+    initializeRommDashboardPageDomVariables()
 }
 
+function initializeRommDashboardPageAllEventListeners() {
+    addApplySettingsButtonEventListeners()
+    addExitRoomButtonEventListeners()
+}
 
-function initializeAllEventListeners() {
+function initializeRommDashboardPageTeamsDashBoardEventListeners() {
 
     addConnectButtonsEventListeners()
     addDisconnectButtonsEventListeners()
@@ -24,10 +38,10 @@ function initializeAnyoneConnected() {
     }
 }
 
-function initializeAllthings() {
+function initializeRommDashboardPageAllthings() {
 
-    initializeAllVariables()
-    initializeAllEventListeners()
-    initializeAnyoneConnected()
+    initializeRommDashboardPageAllVariables()
+    initializeRommDashboardPageAllEventListeners()
+
 
 }

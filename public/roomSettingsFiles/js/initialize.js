@@ -1,4 +1,4 @@
-function initializeDomVariable() {
+function initializeRoomSettingsPageDomVariable() {
 
     createRoomIdButton = document.querySelector('.container__create-room-id-button')
     joinRoomIdButton = document.querySelector('.container__join-room-id-button')
@@ -10,9 +10,9 @@ function initializeDomVariable() {
 
 }
 
-function initializeAllVariables() {
+function initializeRoomSettingsPageAllVariables() {
 
-    initializeDomVariable()
+    initializeRoomSettingsPageDomVariable()
     userProfileInformation = undefined
     players = ["one", "two", "three", "four"]
     socketId = ""
@@ -21,17 +21,18 @@ function initializeAllVariables() {
 }
 
 
-function initializeAllEventListeners() {
+function initializeRoomSettingsPageAllEventListeners() {
     addRoomButtonsEventListeners()
     addSignOutButtonEventListeners()
+
 
 
 }
 
 
-function initializeAllThings() {
+function initializeRoomSettingsPageAllThings() {
 
-    initializeAllVariables()
-    initializeAllEventListeners()
+    initializeRoomSettingsPageAllVariables()
+    initializeRoomSettingsPageAllEventListeners()
 
 }

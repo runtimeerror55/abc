@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.set('views engine', 'ejs')
 app.use('/indexFiles', express.static('public/indexFiles'))
-app.use('/gameSettingsFiles', express.static('public/gameSettingsFiles'))
+app.use('/roomSettingsFiles', express.static('public/roomSettingsFiles'))
 app.use('/teamsFiles', express.static('public/teamsFiles'))
 app.use('/gameFiles', express.static('public/gameFiles'))
 app.use('/statsFiles', express.static('public/statsFiles'))

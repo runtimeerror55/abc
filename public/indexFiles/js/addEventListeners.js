@@ -33,12 +33,12 @@ function addPlayOptionEventListeners() {
         // setTimeout(transitionClose, 2000)
         if (!pageHistory.optionsClicked[1]) {
 
-            insertGameSettingsHtml()
+            insertRoomSettingsHtml()
             pageHistory.currentPage.style.display = "none"
-            pageHistory.currentPage = document.querySelector(".game-settings-page")
+            pageHistory.currentPage = document.querySelector(".room-settings-page")
             pageHistory.currentPlayPage = pageHistory.currentPage
             pageHistory.optionsClicked[1] = true
-            pageHistory.currentPlayPageCssFilePath = "/gameSettingsFiles/css/style.css"
+            pageHistory.currentPlayPageCssFilePath = "/roomSettingsFiles/css/style.css"
         }
         else {
 

@@ -32,3 +32,29 @@ function addGoButtonEventListeners() {
 
     })
 }
+
+
+function addApplySettingsButtonEventListeners() {
+    applySettingsButton.addEventListener("click", () => {
+        matchTypeValue = Number(matchType.value)
+        insertTeamsDashboardHtml()
+        initializeRommDashboardPageTeamsDomVariables()
+        initializeRommDashboardPageTeamsDashBoardEventListeners()
+        initializeAnyoneConnected()
+    })
+}
+
+function addExitRoomButtonEventListeners() {
+    exitRoomButton.addEventListener("click", () => {
+
+        pageHistory.currentPage.style.display = "none"
+        pageHistory.currentPage = document.querySelector(".room-settings-page")
+        pageHistory.currentPage.style.display = "block"
+        cssLink.href = "/gameSettingsFiles/css/style.css"
+        pageHistory.currentPlayPageCssFilePath = "/gameSettingsFiles/css/style.css"
+        pageHistory.currentPlayPage = pageHistory.currentPage
+
+        roomIdInputvalue = ""
+
+    })
+}

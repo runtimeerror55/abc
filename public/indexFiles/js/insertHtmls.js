@@ -1,22 +1,12 @@
-function insertGameSettingsHtml() {
-    mainElement = document.createElement('main')
-    mainElement.classList.add("game-settings-page")
+function insertRoomSettingsHtml() {
 
-    mainElement.innerHTML =
+
+    roomSettingsPage.innerHTML =
         `
     <article>
   
+    <div class="positioning">
     <div class="container">
-        <div class="container__match-type-container">
-            <select class="container__match-type" for>
-                <option value="1">single player</option>
-                <option value="2">1 vs 1</option>
-                <option value="3">1 vs 1 vs 1</option>
-                <option value="4">1 vs 1 vs 1 vs 1</option>
-                <option value="5">2 vs 2</option>
-            </select>
-            <button class="container__match-type-button">match type</button>
-        </div>
 
         <div class="container__create-container">
             <div class="container__room-id-output"></div>
@@ -36,22 +26,20 @@ function insertGameSettingsHtml() {
 
 
     </div>
+    </div>
 </article>
     `
 
-    body.appendChild(mainElement)
-    cssLink.href = "/gameSettingsFiles/css/style.css"
-    currentPlayOptionPage = mainElement
-    currentPlayOptionPageCssFilePath = "/gameSettingsFiles/css/style.css"
-    loadJsDynamically("/socket.io/socket.io.js")
-    loadJsDynamically("/gameSettingsFiles/js/socket.js")
-    loadJsDynamically("gameSettingsFiles/js/variables.js")
-    loadJsDynamically("gameSettingsFiles/js/insertHtml.js")
-    loadJsDynamically("gameSettingsFiles/js/addEventListeners.js")
-    loadJsDynamically("gameSettingsFiles/js/initialize.js")
-    loadJsDynamically("gameSettingsFiles/js/index.js")
-    loadJsDynamically("gameSettingsFiles/js/jwt-decode.js")
-    loadJsDynamically("gameSettingsFiles/js/googleAuthorization.js")
+    cssLink.href = "/roomSettingsFiles/css/style.css"
+    // loadJsDynamically("/socket.io/socket.io.js")
+    // loadJsDynamically("/roomSettingsFiles/js/socket.js")
+    // loadJsDynamically("/roomSettingsFiles/js/variables.js")
+    // loadJsDynamically("/roomSettingsFiles/js/insertHtml.js")
+    // loadJsDynamically("/roomSettingsFiles/js/addEventListeners.js")
+    // loadJsDynamically("/roomSettingsFiles/js/initialize.js")
+    loadJsDynamically("/roomSettingsFiles/js/index.js")
+    loadJsDynamically("/roomSettingsFiles/js/jwt-decode.js")
+    loadJsDynamically("/roomSettingsFiles/js/googleAuthorization.js")
 
 }
 

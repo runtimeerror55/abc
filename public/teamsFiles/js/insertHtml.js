@@ -1,5 +1,5 @@
 function insertGameHtml() {
-    cssLink.href = "/gameFiles/css/style.css"
+
     playersHtml = ""
     for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
         playersHtml +=
@@ -127,9 +127,8 @@ function insertGameHtml() {
                             `
     }
 
-    let mainElement = document.createElement('main')
-    mainElement.classList.add("game-arena-page")
-    mainElement.innerHTML = `
+
+    gameArenaPage.innerHTML = `
                         <div class ="articles-container">
                             ${playersHtml}
                         </div>
@@ -137,18 +136,17 @@ function insertGameHtml() {
                             <div class = "winner-message"></div>
                         </section>
                      `
-    body.appendChild(mainElement)
-
-    loadJsDynamically("/gameFiles/js/variables.js")
-    loadJsDynamically("/gameFiles/js/directions.js")
-    loadJsDynamically("/gameFiles/js/addAndToggleClass.js")
-    loadJsDynamically("/gameFiles/js/addEventListeners.js")
-    loadJsDynamically("/gameFiles/js/calculations.js")
-    loadJsDynamically("/gameFiles/js/conditions.js")
-    loadJsDynamically("/gameFiles/js/dpAlgorithm.js")
-    loadJsDynamically("/gameFiles/js/startTheGame.js")
-    loadJsDynamically("/gameFiles/js/socket.js")
-    loadJsDynamically("/gameFiles/js/initializeGameContent.js")
+    cssLink.href = "/gameFiles/css/style.css"
+    // loadJsDynamically("/gameFiles/js/variables.js")
+    // loadJsDynamically("/gameFiles/js/directions.js")
+    // loadJsDynamically("/gameFiles/js/addAndToggleClass.js")
+    // loadJsDynamically("/gameFiles/js/addEventListeners.js")
+    // loadJsDynamically("/gameFiles/js/calculations.js")
+    // loadJsDynamically("/gameFiles/js/conditions.js")
+    // loadJsDynamically("/gameFiles/js/dpAlgorithm.js")
+    // loadJsDynamically("/gameFiles/js/startTheGame.js")
+    // loadJsDynamically("/gameFiles/js/socket.js")
+    // loadJsDynamically("/gameFiles/js/initializeGameContent.js")
     loadJsDynamically("/gameFiles/js/main.js")
 }
 
@@ -167,4 +165,46 @@ function insertButtonsHtml(playerIndex) {
         not ready
     </div>`
     }
+}
+
+
+function insertTeamsDashboardHtml() {
+
+    for (let i = 0; i < matchTypeValue; i++) {
+
+        playersHtml +=
+
+            `
+                <div class="teams-container__team-${players[i]}-container">
+                    <div class="teams-container__player-${players[i]}-container teams-container__player-container">
+                        <div class="teams-container__player-${players[i]} teams-container__player"></div>
+                        <button class="teams-container__connect-button button">connect</button>
+                        <button class="teams-container__disconnect-button button">disconnect</button>
+                    </div>
+                </div>
+                `
+
+    }
+
+    teamsContainer = document.querySelector(".teams-container")
+    if (teamsContainer == null) {
+        articleElement = document.createElement('article')
+        articleElement.innerHTML =
+            `            
+                    <section>
+                        <div class="teams-container">
+                            ${playersHtml}
+                        </div>
+                    </section>
+                    <section>
+                        <div class="go-button button">lets go</div>
+                    </section>
+            
+            `
+        roomDashboardPageArticlesContainer.appendChild(articleElement)
+    }
+    else {
+        teamsContainer.innerHTML = playersHtml
+    }
+    playersHtml = ""
 }

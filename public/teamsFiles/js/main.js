@@ -1,1 +1,1 @@
-initializeAllthings()
+initializeRommDashboardPageAllthings()

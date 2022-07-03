@@ -8,7 +8,7 @@ function addRoomButtonsEventListeners() {
     joinRoomIdButton.addEventListener("click", () => {
 
         roomIdInputvalue = roomIdInput.value
-        matchTypeValue = Number(matchType.value)
+
 
         if (roomIdInputvalue == "") {
             alert("please enter room id to join the room")
@@ -17,11 +17,11 @@ function addRoomButtonsEventListeners() {
             alert("please sign in using google account to play")
         }
         else {
-            socket.emit("join room", roomIdInputvalue)
 
-            insertTeamsHtml()
+
+            insertRoomDashboardHtml()
             pageHistory.currentPage.style.display = "none"
-            pageHistory.currentPage = document.querySelector(".teams-page")
+            pageHistory.currentPage = document.querySelector(".room-dashboard-page")
             pageHistory.currentPlayPage = pageHistory.currentPage
             pageHistory.currentPlayPageCssFilePath = "/teamsFiles/css/style.css"
 
@@ -32,12 +32,6 @@ function addRoomButtonsEventListeners() {
     })
 }
 
-
-function addMatchTypeEventListeners() {
-    matchType.addEventListener("input", (e) => {
-        matchTypeValue = e.target.value
-    })
-}
 
 function addSignOutButtonEventListeners() {
     signOutButton.addEventListener("click", () => {

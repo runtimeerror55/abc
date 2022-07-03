@@ -10,7 +10,7 @@ function onSignIn(response) {
     userProfileInformation = {
         googleId: responsePayload.sub,
         name: responsePayload.given_name,
-        ImageUrl: responsePayload.picture
+        imageUrl: responsePayload.picture
     }
 
 }

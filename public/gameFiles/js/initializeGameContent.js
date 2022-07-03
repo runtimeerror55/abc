@@ -182,7 +182,7 @@ function createArrayOfPlayersReadyButton() {
 
 
 
-function initializeDomVariables() {
+function initializeGameArenaPageDomVariables() {
 
     resetButton = document.querySelector(`.${playerNumber}reset`)
     playButton = document.querySelector(`.${playerNumber}play`)
@@ -192,9 +192,9 @@ function initializeDomVariables() {
     createArrayOfPlayersReadyButton()
 }
 
-function initializeAllVariables() {
+function initializeGameArenaPageAllVariables() {
 
-    initializeDomVariables()
+    initializeGameArenaPageDomVariables()
     createDpArray()
     createBinaryMatrix()
     createArrayOftotalNoOfBlocksInEachRow()
@@ -228,7 +228,7 @@ function initializeAllVariables() {
 
 }
 
-function initializeAllEventListeners() {
+function initializeGameArenaPageAllEventListeners() {
 
     addGameBoxContentEventListeners()
     addBodyEventListener()
@@ -240,7 +240,7 @@ function initializeAllEventListeners() {
     }
 }
 
-function initializeAllSoundFiles() {
+function initializeGameArenaPageAllSoundFiles() {
 
     clear = new Audio('/gameFiles/sound/clear.wav');
     fall = new Audio('/gameFiles/sound/fall.wav')
@@ -257,11 +257,11 @@ function initializeAllSoundFiles() {
 
 }
 
-function initializeAllThings() {
+function initializeGameArenaPageAllThings() {
 
-    initializeAllVariables()
+    initializeGameArenaPageAllVariables()
     createGameBoxContent()
-    initializeAllEventListeners()
-    initializeAllSoundFiles()
+    initializeGameArenaPageAllEventListeners()
+    initializeGameArenaPageAllSoundFiles()
 
 }

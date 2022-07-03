@@ -14,7 +14,8 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
     }
     connectButtons[playerIndex].classList.add("active")
     connectButtons[playerIndex].innerText = "connected"
-    console.log(numberOfconnectedPlayers)
+
+
 
 })
 
@@ -49,6 +50,10 @@ socket.on("anyone connected", (connectedPlayersIndexes) => {
 
 
 socket.on("enter the game arena", () => {
+    pageHistory.currentPage.style.display = "none"
     insertGameHtml()
+    pageHistory.currentPage = document.querySelector(".game-arena-page")
+    pageHistory.currentPlayPage = pageHistory.currentPage
+    pageHistory.currentPlayPageCssFilePath = "/gameFiles/css/style.css"
 })
 
