@@ -107,6 +107,17 @@
 
 }
 
+.g-s-c__heading,
+.j-ps-c__heading {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    color: black;
+}
+
 .g-s-c__room-id {
     color: white;
     border: 2px solid #9f1aa5;
@@ -165,6 +176,7 @@
     width: 150px;
     text-align: center;
     padding: 5px;
+    margin: 10px;
 }
 
 .g-s-c__part-two {
@@ -174,4 +186,23 @@
 
 .g-s-c__apply-button {
     width: 100%;
+}
+
+
+.j-ps-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    margin: 10px;
+    border-radius: 20px;
+    height: 450px;
+    width: 400px;
+}
+
+.j-p-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }

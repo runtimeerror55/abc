@@ -1,4 +1,5 @@
-function insertRoomDashboardHtml() {
+function insertRoomDashboardHtml()
+{
 
     roomDashboardPage.innerHTML =
         `
@@ -9,18 +10,11 @@ function insertRoomDashboardHtml() {
 
 
                 <div class="g-s-c">
-
+                <h1 class="g-s-c__heading">game settings</h1>
 
                     <div class="g-s-c__part-one">
                
-
-                   <div class="g-s-c__room-id">room-id: abvcudaoh0u340830</div>
-                 
-
-              
                     <!-- m-t-y = match-type-container -->
-
-
 
                     <div class="g-s-c__match-type-container">
                     <div class="label">match type</div>
@@ -59,7 +53,19 @@ function insertRoomDashboardHtml() {
         
                 </div>
             </article>
+            <article>
+              <!-- j-ps-c = joined-players-container -->
+            
+                
+               <div class="j-ps-c">
+              <h1 class="j-ps-c__heading">joined players</h1>
+               
+
+    
+    
                 </div>
+            </article>
+        </div>
             
             `
 
@@ -74,3 +80,5 @@ function insertRoomDashboardHtml() {
 
 
 }
+
+{/* <div class="g-s-c__room-id">room-id: ${roomIdInputvalue}</div> */ }

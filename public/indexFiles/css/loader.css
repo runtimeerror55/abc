@@ -1,27 +1,16 @@
 .nav-bar {
     position: absolute;
-    width: max-content;
     height: 100vh;
-    background-color: #222;
     top: 0;
     width: 250px;
-
-}
-
-.nav-bar-active1 {
-    display: block;
-    bottom: 20px;
-}
-
-.nav-bar__menu-container {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    justify-content: center;
+    display: none;
 
 }
+
+
 
 .option-container {
     background-color: #333;

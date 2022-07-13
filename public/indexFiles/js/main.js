@@ -1,14 +1,17 @@
 
-function transitionUpward() {
+function transitionUpward()
+{
 
     loaderToggleClass(loader, "loader-active1")
-    setTimeout(() => {
+    setTimeout(() =>
+    {
         loaderToggleClass(loaderSvg, "loader-svg-active1")
     }, 500)
 
 }
 
-function transitionClose() {
+function transitionClose()
+{
 
     loaderToggleClass(loader, "loader-active1");
     loaderToggleClass(loaderSvg, "loader-svg-active1");
@@ -17,7 +20,8 @@ function transitionClose() {
 
 
 
-function loaderToggleClass(element, className) {
+function loaderToggleClass(element, className)
+{
     element.classList.toggle(className)
 }
 
@@ -27,3 +31,4 @@ addPlayOptionEventListeners()
 addHomeOptionEventListeners()
 addInstructionsOptionEventListeners()
 addStatsOptionEventListeners()
+addBodyEventListeners()

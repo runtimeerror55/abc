@@ -21,6 +21,7 @@ let resetButton
 let arrayOftotalNoOfBlocksInEachRow
 let arrayOfPlayersReadyButton
 let arrayOfColorClasses
+let exitButton
 
 let clear
 let fall

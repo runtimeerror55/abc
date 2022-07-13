@@ -8,3 +8,5 @@ let applySettingsButton
 let matchType
 let teamsContainer
 let exitRoomButton
+let joinedPlayersHtml
+let joinedPlayersContainer

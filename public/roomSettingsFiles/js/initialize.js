@@ -1,4 +1,5 @@
-function initializeRoomSettingsPageDomVariable() {
+function initializeRoomSettingsPageDomVariable()
+{
 
     createRoomIdButton = document.querySelector('.container__create-room-id-button')
     joinRoomIdButton = document.querySelector('.container__join-room-id-button')
@@ -10,7 +11,8 @@ function initializeRoomSettingsPageDomVariable() {
 
 }
 
-function initializeRoomSettingsPageAllVariables() {
+function initializeRoomSettingsPageAllVariables()
+{
 
     initializeRoomSettingsPageDomVariable()
     userProfileInformation = undefined
@@ -21,8 +23,10 @@ function initializeRoomSettingsPageAllVariables() {
 }
 
 
-function initializeRoomSettingsPageAllEventListeners() {
-    addRoomButtonsEventListeners()
+function initializeRoomSettingsPageAllEventListeners()
+{
+    addJoinRoomButtonEventListeners()
+    addCreateRoomButtonEventListeners()
     addSignOutButtonEventListeners()
 
 
@@ -30,7 +34,8 @@ function initializeRoomSettingsPageAllEventListeners() {
 }
 
 
-function initializeRoomSettingsPageAllThings() {
+function initializeRoomSettingsPageAllThings()
+{
 
     initializeRoomSettingsPageAllVariables()
     initializeRoomSettingsPageAllEventListeners()

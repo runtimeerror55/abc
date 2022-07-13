@@ -9,10 +9,12 @@ const io = require('socket.io')(server, {
 })
 const mongoose = require('mongoose');
 let connectionString = "mongodb+srv://dbUser:dPPEbgZLe0oPy8Oh@atlascluster.swmtc.mongodb.net/?retryWrites=true&w=majority"
-mongoose.connect(connectionString).then(() => {
+mongoose.connect(connectionString).then(() =>
+{
         console.log('Connected to the database ')
 })
-        .catch((err) => {
+        .catch((err) =>
+        {
                 console.error(`Error connecting to the database. n${err}`);
         })
 const usersModel = require('./public/models/schemas')
@@ -22,7 +24,8 @@ let connectedRooms = {}
 
 
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) =>
+{
         res.sendFile(__dirname + '/public/indexFiles/html/index.html');
 });
 
@@ -35,43 +38,118 @@ app.use('/statsFiles', express.static('public/statsFiles'))
 app.use('/globalFiles', express.static('public/globalFiles'))
 
 
-io.on("connection", (socket) => {
+io.on("connection", (socket) =>
+{
 
 
+        socket.on("create room", (roomId, userProfileInformation) =>
+        {
+                connectedRooms[roomId] =
+                {
 
-        socket.on("connect player", (roomId, playerIndex, matchTypeValue, userProfileInformation) => {
-                id = roomId
+                        "connectedPlayersDetails":
+                        {
+
+                                [socket.id]:
+                                {
+
+                                        googleId: userProfileInformation["googleId"],
+                                        name: userProfileInformation["name"],
+                                        readyState: false,
+                                        gameOver: false,
+                                        playerNumber: undefined,
+                                        score: 0,
+
+                                }
+                        },
+                        "connectedPlayers": 0,
+                        "joinedPlayers": 1,
+                        "gameStarted": false,
+                        "matchTypeValue": 1,
+                        "admin": socket.id
+                }
+
                 socket.join(roomId)
 
-                if (!connectedRooms.hasOwnProperty(roomId)) {
-
-                        connectedRooms[roomId] = {
-
-                                "connectedPlayersDetails": {},
-                                "connectedPlayers": 0,
-                                "gameStarted": false,
-                                "matchTypeValue": matchTypeValue,
-                        }
-                }
-
-                connectedRooms[roomId]["connectedPlayersDetails"][socket.id] = {
-                        googleId: userProfileInformation["googleId"],
-                        name: userProfileInformation["name"],
-                        readyState: false,
-                        gameOver: false,
-                        playerNumber: playerIndex,
-                        score: 0
-
-                }
-
-                connectedRooms[roomId]["connectedPlayers"]++
-                io.to(socket.id).emit("connected player", playerIndex, connectedRooms[roomId]["connectedPlayers"], true)
-                socket.broadcast.in(id).emit("connected player", playerIndex, connectedRooms[roomId]["connectedPlayers"], false)
 
         })
 
 
-        socket.on("disconnect player", (roomId, playerIndex) => {
+        socket.on("join room", (roomId, userProfileInformation) =>
+        {
+
+
+                if (connectedRooms.hasOwnProperty(roomId))
+                {
+                        if (connectedRooms[roomId]["joinedPlayers"] < connectedRooms[roomId]["matchTypeValue"])
+                        {
+
+
+                                connectedRooms[roomId]["connectedPlayersDetails"][socket.id] =
+                                {
+                                        googleId: userProfileInformation["googleId"],
+                                        name: userProfileInformation["name"],
+                                        readyState: false,
+                                        gameOver: false,
+                                        playerNumber: undefined,
+                                        score: 0
+
+                                }
+                                connectedRooms[roomId]["joinedPlayers"]++
+                                socket.join(roomId)
+                                io.to(socket.id).emit("joined room", connectedRooms[roomId]["matchTypeValue"])
+                                socket.broadcast.in(roomId).emit("player joined", userProfileInformation.name)
+                        }
+                        else
+                        {
+                                io.to(socket.id).emit("joining error", "room is full")
+                        }
+
+                }
+                else
+                {
+                        io.to(socket.id).emit("joining error", "room does not exist")
+
+                }
+        })
+
+
+        socket.on("connect player", (roomId, playerIndex, matchTypeValue, userProfileInformation) =>
+        {
+                id = roomId
+
+                // if (!connectedRooms.hasOwnProperty(roomId))
+                // {
+
+                //         connectedRooms[roomId] = {
+
+                //                 "connectedPlayersDetails": {},
+                //                 "connectedPlayers": 0,
+                //                 "gameStarted": false,
+                //                 "matchTypeValue": matchTypeValue,
+                //         }
+                // }
+
+                // connectedRooms[roomId]["connectedPlayersDetails"][socket.id] = {
+                //         googleId: userProfileInformation["googleId"],
+                //         name: userProfileInformation["name"],
+                //         readyState: false,
+                //         gameOver: false,
+                //         playerNumber: playerIndex,
+                //         score: 0
+
+                // }
+
+                connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["playerNumber"] = playerIndex
+                connectedRooms[roomId]["connectedPlayers"]++
+                io.to(socket.id).emit("connected player", playerIndex, connectedRooms[roomId]["connectedPlayers"], true)
+                socket.broadcast.in(roomId).emit("connected player", playerIndex, connectedRooms[roomId]["connectedPlayers"], false)
+
+        })
+
+
+        socket.on("disconnect player", (roomId, playerIndex) =>
+        {
 
                 delete connectedRooms[roomId]["connectedPlayersDetails"][socket.id]
                 connectedRooms[roomId]["connectedPlayers"]--
@@ -80,80 +158,131 @@ io.on("connection", (socket) => {
 
         })
 
-        socket.on("disconnecting", () => {
+        socket.on("disconnecting", () =>
+        {
 
                 let roomId = [...socket.rooms][1]
-                if (roomId != undefined) {
+                if (roomId != undefined)
+                {
                         connectedRooms[roomId]["connectedPlayers"]--
-                        socket.broadcast.in(roomId).emit("disconnected player", connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["playerIndex"], false)
+                        socket.broadcast.in(roomId).emit("disconnected player", connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["playerNumber"], false)
                         delete connectedRooms[roomId]["connectedPlayersDetails"][socket.id]
-                        if (connectedRooms[roomId]["connectedPlayers"] == 0) {
+                        if (connectedRooms[roomId]["connectedPlayers"] == 0)
+                        {
                                 delete connectedRooms[roomId]
                         }
                 }
         })
 
+        socket.on("anyone joined", (roomId) =>
+        {
+                let values = Object.values(connectedRooms[roomId]["connectedPlayersDetails"])
+                let players = []
+                values.forEach(element =>
+                {
+                        players.push(element["name"])
+                })
+                io.to(socket.id).emit("anyone joined", players)
+
+        })
+
+        socket.on("can i apply settings", (roomId, matchTypeValue) =>
+        {
+                if (connectedRooms[roomId]["joinedPlayers"] <= matchTypeValue)
+                {
+                        connectedRooms[roomId]["matchTypeValue"] = matchTypeValue
+                        io.to(roomId).emit("yes you can apply settings", matchTypeValue)
+                }
+                else
+                {
+                        io.to(socket.id).emit("settings apply error")
+                }
+        })
+
+        socket.on("player exited game arena", (roomId) =>
+        {
+
+                socket.broadcast.in(roomId).emit("player exited game arena")
+        })
 
 
-        socket.on("toggleClass", (coordinates, hover, playerNumber, blockColor) => {
+
+        socket.on("toggleClass", (roomId, coordinates, hover, playerNumber, blockColor) =>
+        {
+
 
                 socket.broadcast.in(id).emit("toggleClass", coordinates, hover, playerNumber, blockColor)
         })
-        socket.on("addClass", (previous, currentDpTrueCoordinates, playerNumber) => {
+        socket.on("addClass", (roomId, previous, currentDpTrueCoordinates, playerNumber) =>
+        {
 
                 socket.broadcast.in(id).emit("addClass", previous, currentDpTrueCoordinates, playerNumber)
 
         })
 
-        socket.on("laserBeamRow", (playerNumber, row, width) => {
+        socket.on("laserBeamRow", (roomId, playerNumber, row, width) =>
+        {
 
                 socket.broadcast.in(id).emit("laserBeamRow", playerNumber, row, width)
         })
 
-        socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) => {
+        socket.on("destroy", (roomId, fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) =>
+        {
 
                 socket.broadcast.in(id).emit("destroy", fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag)
         })
 
-        socket.on("anyone connected", (roomId) => {
+        socket.on("anyone connected", (roomId) =>
+        {
 
-                let playerIndexes
-                if (connectedRooms[roomId] != undefined) {
-                        console.log(Object.values(connectedRooms[roomId]["connectedPlayersDetails"]))
-                        playerIndexes = Object.values(connectedRooms[roomId]["connectedPlayersDetails"]).map(element => element["playerNumber"])
+                if (connectedRooms[roomId]["connectedPlayers"] > 0)
+                {
+                        let playerIndexes
+                        if (connectedRooms[roomId] != undefined)
+                        {
+                                console.log(Object.values(connectedRooms[roomId]["connectedPlayersDetails"]))
+                                playerIndexes = Object.values(connectedRooms[roomId]["connectedPlayersDetails"]).map(element => element["playerNumber"])
+                        }
+                        io.to(socket.id).emit("anyone connected", playerIndexes)
                 }
-                io.to(socket.id).emit("anyone connected", playerIndexes)
         })
 
-        socket.on("game over", (roomId, playerIndexValue, score) => {
+        socket.on("game over", (roomId, playerIndexValue, score) =>
+        {
 
                 connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["gameOver"] = true
                 connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["score"] = score
-                socket.broadcast.in(id).emit("game over", playerIndexValue)
+                socket.broadcast.in(roomId).emit("game over", playerIndexValue)
 
                 let values = Object.values(connectedRooms[roomId]["connectedPlayersDetails"])
-                let isTrue = values.every(element => {
+                let isTrue = values.every(element =>
+                {
                         return element["gameOver"]
                 })
-                if (isTrue) {
+                if (isTrue)
+                {
 
                         saveToDatabase(roomId)
 
                 }
         })
 
-        socket.on("can i reset", (roomId) => {
+        socket.on("can i reset", (roomId) =>
+        {
 
                 let values = Object.values(connectedRooms[roomId]["connectedPlayersDetails"])
-                let isTrue = values.every(element => {
+                let isTrue = values.every(element =>
+                {
 
                         return element["gameOver"]
                 })
                 io.to(roomId).emit("can i reset", isTrue)
 
-                if (isTrue) {
+                if (isTrue)
+                {
 
-                        values.forEach(element => {
+                        values.forEach(element =>
+                        {
                                 element["gameOver"] = false
                                 element["readyState"] = false
                         })
@@ -161,26 +290,32 @@ io.on("connection", (socket) => {
                 }
         })
 
-        socket.on("update score", (roomId, playerIndexValue, score) => {
+        socket.on("update score", (roomId, playerIndexValue, score) =>
+        {
 
                 socket.broadcast.in(roomId).emit("update score", playerIndexValue, score)
         })
 
-        socket.on("generatedBlockProperties", (arrayOfObjectsOfBlockProperties) => {
+        socket.on("generatedBlockProperties", (roomId, arrayOfObjectsOfBlockProperties) =>
+        {
 
                 socket.broadcast.in(id).emit("generatedBlockProperties", arrayOfObjectsOfBlockProperties)
         })
 
-        socket.on("enter the game arena", (roomId) => {
+        socket.on("enter the game arena", (roomId) =>
+        {
 
                 socket.broadcast.in(roomId).emit("enter the game arena")
         })
 
-        socket.on("can i start the game", (roomId) => {
+        socket.on("can i start the game", (roomId) =>
+        {
                 let values = Object.values(connectedRooms[roomId]["connectedPlayersDetails"])
 
-                let areAllPlayersReady = values.every((element) => {
-                        if (element["playerNumber"] == 0) {
+                let areAllPlayersReady = values.every((element) =>
+                {
+                        if (element["playerNumber"] == 0)
+                        {
                                 return true
                         }
                         return element["readyState"]
@@ -188,25 +323,30 @@ io.on("connection", (socket) => {
                 let isGameStarted = connectedRooms[roomId]["gameStarted"]
 
 
-                if (!isGameStarted && areAllPlayersReady) {
+                if (!isGameStarted && areAllPlayersReady)
+                {
 
                         connectedRooms[roomId]["gameStarted"] = true
                         io.to(roomId).emit("you can start the game")
                 }
         })
 
-        socket.on("can i toggle player ready state", (roomId, playerIndex) => {
+        socket.on("can i toggle player ready state", (roomId, playerIndex) =>
+        {
 
 
-                if (!connectedRooms[roomId]["gameStarted"]) {
+                if (!connectedRooms[roomId]["gameStarted"])
+                {
                         connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["readyState"] = !connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["readyState"]
                         io.to(roomId).emit("you can toggle player ready state", playerIndex)
                 }
                 console.log(connectedRooms[roomId]["connectedPlayersDetails"])
         })
 
-        socket.on("retrieve stats data", (googleId) => {
-                usersModel.findById(googleId).then(data => {
+        socket.on("retrieve stats data", (googleId) =>
+        {
+                usersModel.findById(googleId).then(data =>
+                {
                         socket.emit("take your data", data)
                 })
         })
@@ -216,13 +356,15 @@ io.on("connection", (socket) => {
 
 const port = process.env.PORT || 3000
 
-server.listen(port, () => {
+server.listen(port, () =>
+{
         console.log(`listening at ${port}`)
 })
 
 
 
-function saveToDatabase(roomId) {
+function saveToDatabase(roomId)
+{
 
 
         let values = Object.values(connectedRooms[roomId]["connectedPlayersDetails"])
@@ -230,7 +372,8 @@ function saveToDatabase(roomId) {
                 matchType: connectedRooms[roomId]["matchTypeValue"],
                 playersDetails: []
         }
-        values.forEach(element => {
+        values.forEach(element =>
+        {
                 game.playersDetails.push({
                         name: element["name"],
                         playerNumber: element["playerNumber"],
@@ -238,11 +381,14 @@ function saveToDatabase(roomId) {
                 })
         })
 
-        values.forEach(element => {
+        values.forEach(element =>
+        {
 
 
-                usersModel.findById(element["googleId"]).then(data => {
-                        if (data == null) {
+                usersModel.findById(element["googleId"]).then(data =>
+                {
+                        if (data == null)
+                        {
                                 let totalData = new usersModel({
                                         _id: element["googleId"],
                                         name: element["name"],
@@ -251,7 +397,8 @@ function saveToDatabase(roomId) {
 
                                 totalData.save().then(data => console.log(data, "ji"))
                         }
-                        else {
+                        else
+                        {
                                 usersModel.findOneAndUpdate({ _id: element["googleId"] }, { $push: { games: game } }, { new: true }).then(data => console.log(data))
                         }
                 })

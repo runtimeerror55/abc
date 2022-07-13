@@ -1,51 +1,62 @@
 
-socket.on("joined", (payload) => {
+socket.on("joined", (payload) =>
+{
 
     playerNumber = payload
     console.log(playerNumber)
     play = document.querySelector(`.${playerNumber}play`)
-    play.addEventListener('click', () => {
+    play.addEventListener('click', () =>
+    {
         start()
     })
 })
 
 
-socket.on("toggleClass", (coordinates, hover, playerNumber, blockColor) => {
+socket.on("toggleClass", (coordinates, hover, playerNumber, blockColor) =>
+{
 
     toggleClass(coordinates, hover, playerNumber, blockColor)
 })
 
 
 
-socket.on("addClass", (previous, currentDpTrueCoordinates, playerNumber) => {
+socket.on("addClass", (previous, currentDpTrueCoordinates, playerNumber) =>
+{
 
     addClass(previous, currentDpTrueCoordinates, playerNumber)
 })
 
-socket.on("laserBeamRow", (playerNumber, row, width) => {
+socket.on("laserBeamRow", (playerNumber, row, width) =>
+{
     laserBeamRow = document.querySelector(`.${playerNumber}laser-beam-row${row}`)
     laserBeamRow.style.width = width
     console.log(laserBeamRow)
 })
 
-socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber) => {
+socket.on("destroy", (fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber) =>
+{
 
     destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber)
 })
 
-socket.on("game over", (playerIndexValue) => {
+socket.on("game over", (playerIndexValue) =>
+{
 
     arrayOfPlayersGameOver[playerIndexValue].style.height = "100%"
 })
 
-socket.on("can i reset", (payload) => {
-    if (payload) {
-        arrayOfPlayersGameOver.forEach(element => {
+socket.on("can i reset", (payload) =>
+{
+    if (payload)
+    {
+        arrayOfPlayersGameOver.forEach(element =>
+        {
 
             element.style.height = "0"
         })
 
-        arrayOfPlayersReadyButton.forEach(element => {
+        arrayOfPlayersReadyButton.forEach(element =>
+        {
             element.innerText = "not ready"
             element.classList.toggle("not-ready-active")
         })
@@ -53,12 +64,14 @@ socket.on("can i reset", (payload) => {
         removeBlockColorClasses()
         refreshBinaryMatrix(binaryMatrix)
         refreshArrayOftotalNoOfBlocksInEachRow()
-        if (isAdmin) {
+        if (isAdmin)
+        {
             generateBlockProperties()
         }
         currentBlockIndex = -1
         score = 0
-        arrayOfPlayersScoreBox.forEach(element => {
+        arrayOfPlayersScoreBox.forEach(element =>
+        {
             element.innerText = "0"
         })
 
@@ -66,32 +79,54 @@ socket.on("can i reset", (payload) => {
 })
 
 
-socket.on("update score", (playerIndexValue, score) => {
+socket.on("update score", (playerIndexValue, score) =>
+{
 
     arrayOfPlayersScoreBox[playerIndexValue].innerText = `${score}`
 })
 
 
-socket.on("generatedBlockProperties", (payload) => {
+socket.on("generatedBlockProperties", (payload) =>
+{
     arrayOfObjectsOfBlockProperties = payload
 })
 
-socket.on("you can start the game", () => {
+socket.on("you can start the game", () =>
+{
 
     start()
 })
 
-socket.on("you can toggle player ready state", (playerIndexValue) => {
+socket.on("you can toggle player ready state", (playerIndexValue) =>
+{
 
 
-    if (arrayOfPlayersReadyButton[playerIndexValue].classList.contains("not-ready-active")) {
+    if (arrayOfPlayersReadyButton[playerIndexValue].classList.contains("not-ready-active"))
+    {
 
         arrayOfPlayersReadyButton[playerIndexValue].innerText = "ready"
     }
-    else {
+    else
+    {
         arrayOfPlayersReadyButton[playerIndexValue].innerText = "not ready"
     }
     arrayOfPlayersReadyButton[playerIndexValue].classList.toggle("not-ready-active")
 
 
+})
+
+socket.on("player exited game arena", () =>
+{
+    transitionUpward()
+    setTimeout(() =>
+    {
+
+        pageHistory.currentPage.style.display = "none"
+        pageHistory.currentPage = document.querySelector(".room-dashboard-page")
+        pageHistory.currentPage.style.display = "block"
+        cssLink.href = "/roomDashboardFiles/css/style.css"
+        pageHistory.currentPlayPageCssFilePath = "/roomDashboardFiles/css/style.css"
+        pageHistory.currentPlayPage = pageHistory.currentPage
+    }, 500)
+    setTimeout(transitionClose, 1500)
 })

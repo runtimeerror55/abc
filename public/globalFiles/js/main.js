@@ -54,7 +54,8 @@ let pageHistory = {
 
 
 
-function loadJsDynamically(filePath) {
+function loadJsDynamically(filePath)
+{
 
     let scriptElement = document.createElement('script')
     scriptElement.src = filePath
@@ -62,28 +63,33 @@ function loadJsDynamically(filePath) {
     body.appendChild(scriptElement)
 
     // success event 
-    scriptElement.addEventListener("load", (e) => {
+    scriptElement.addEventListener("load", (e) =>
+    {
         console.log("File loaded", e.target)
     });
     // error event
-    scriptElement.addEventListener("error", (ev) => {
+    scriptElement.addEventListener("error", (ev) =>
+    {
         console.log("Error on loading file", ev);
     });
 }
 
 
-function loadCssDynamically(filePath) {
+function loadCssDynamically(filePath)
+{
     let linkElement = document.createElement('link')
     linkElement.href = filePath
     linkElement.rel = "stylesheet"
     linkElement.async = false
     head.appendChild(linkElement)
     console.log(linkElement)
-    linkElement.addEventListener("load", (e) => {
+    linkElement.addEventListener("load", (e) =>
+    {
         console.log("File loaded", e.target)
     });
     // error event
-    linkElement.addEventListener("error", (ev) => {
+    linkElement.addEventListener("error", (ev) =>
+    {
         console.log("Error on loading file", ev);
     });
 }

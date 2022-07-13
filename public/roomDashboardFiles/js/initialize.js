@@ -1,4 +1,5 @@
-function initializeRommDashboardPageDomVariables() {
+function initializeRommDashboardPageDomVariables()
+{
 
 
     matchType = document.querySelector(".g-s-c__match-type")
@@ -6,25 +7,31 @@ function initializeRommDashboardPageDomVariables() {
     teamsContainer = undefined
     exitRoomButton = document.querySelector(".g-s-c__exit-room")
     applySettingsButton = document.querySelector(".g-s-c__apply-button")
+    joinedPlayersContainer = document.querySelector(".j-ps-c")
 }
 
-function initializeRommDashboardPageTeamsDomVariables() {
+function initializeRommDashboardPageTeamsDomVariables()
+{
 
     connectButtons = document.querySelectorAll('.teams-container__connect-button')
     disconnectButtons = document.querySelectorAll('.teams-container__disconnect-button')
     goButton = document.querySelector(".go-button")
 }
 
-function initializeRommDashboardPageAllVariables() {
+function initializeRommDashboardPageAllVariables()
+{
     initializeRommDashboardPageDomVariables()
+    joinedPlayersHtml = ""
 }
 
-function initializeRommDashboardPageAllEventListeners() {
+function initializeRommDashboardPageAllEventListeners()
+{
     addApplySettingsButtonEventListeners()
     addExitRoomButtonEventListeners()
 }
 
-function initializeRommDashboardPageTeamsDashBoardEventListeners() {
+function initializeRommDashboardPageTeamsDashBoardEventListeners()
+{
 
     addConnectButtonsEventListeners()
     addDisconnectButtonsEventListeners()
@@ -32,16 +39,25 @@ function initializeRommDashboardPageTeamsDashBoardEventListeners() {
 
 }
 
-function initializeAnyoneConnected() {
-    if (roomIdInputvalue != "") {
+function initializeAnyoneConnected()
+{
+    if (roomIdInputvalue != "")
+    {
         socket.emit("anyone connected", roomIdInputvalue)
     }
 }
 
-function initializeRommDashboardPageAllthings() {
+function initializeAnyOneJoined()
+{
+    socket.emit("anyone joined", roomIdInputvalue)
+}
+
+function initializeRommDashboardPageAllthings()
+{
 
     initializeRommDashboardPageAllVariables()
     initializeRommDashboardPageAllEventListeners()
+    initializeAnyOneJoined()
 
 
 }

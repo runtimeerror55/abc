@@ -16,7 +16,7 @@
 
 .articles-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: 100vh;
 
@@ -53,7 +53,15 @@ section {
     width: 100%;
 }
 
+.name {
+    border: 2px solid rgba(162, 12, 127, 1);
+    background-color: rgba(162, 12, 127, 0.5)
+}
 
+.exit {
+    border: 2px solid rgba(255, 0, 0, 1);
+    background-color: rgba(255, 0, 0, 0.5)
+}
 
 .score {
 
@@ -67,8 +75,8 @@ section {
 }
 
 .reset {
-    border: 2px solid rgba(128, 0, 128, 1);
-    background-color: rgba(128, 0, 128, 0.5);
+    border: 2px solid rgba(236, 230, 65, 1);
+    background-color: rgba(236, 230, 65, 0.5);
 }
 
 
@@ -83,16 +91,17 @@ section {
     background-color: rgba(255, 0, 0, 0.5)
 }
 
+.exit,
+.name,
 .score,
 .play,
 .ready,
 .reset {
     width: 70px;
-    height: 20px;
     text-align: center;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 25px;
 
 }
 

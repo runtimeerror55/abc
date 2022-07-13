@@ -1,13 +1,8 @@
-// function addGetStartedButtonEventListeners() {
-//     getStarted.addEventListener('click', function () {
-//         setTimeout(transitionUpward, 400)
-//         toggleClass(body, "body-active1")
-//         setTimeout(transitionClose, 2000)
-//     });
-// }
 
-function addHomeOptionEventListeners() {
-    homeOption.addEventListener("click", () => {
+function addHomeOptionEventListeners()
+{
+    homeOption.addEventListener("click", () =>
+    {
 
 
         pageHistory.currentPage.style.display = "none"
@@ -21,13 +16,18 @@ function addHomeOptionEventListeners() {
 
 
 
-function addPlayOptionEventListeners() {
-    playOption.addEventListener("click", () => {
+function addPlayOptionEventListeners()
+{
+    playOption.addEventListener("click", () =>
+    {
 
+        navBar.style.display = "none"
         transitionUpward()
-        setTimeout(() => {
+        setTimeout(() =>
+        {
 
-            if (!pageHistory.optionsClicked[1]) {
+            if (!pageHistory.optionsClicked[1])
+            {
 
                 insertRoomSettingsHtml()
                 pageHistory.currentPage.style.display = "none"
@@ -37,7 +37,8 @@ function addPlayOptionEventListeners() {
                 pageHistory.optionsClicked[1] = true
                 pageHistory.currentPlayPageCssFilePath = "/roomSettingsFiles/css/style.css"
             }
-            else {
+            else
+            {
 
                 pageHistory.currentPage.style.display = "none"
                 pageHistory.currentPlayPage.style.display = "block"
@@ -51,15 +52,19 @@ function addPlayOptionEventListeners() {
     })
 }
 
-function addStatsOptionEventListeners() {
-    statsOption.addEventListener("click", () => {
+function addStatsOptionEventListeners()
+{
+    statsOption.addEventListener("click", () =>
+    {
 
-        if (!pageHistory.optionsClicked[2]) {
+        if (!pageHistory.optionsClicked[2])
+        {
 
             insertStatsHtml()
 
         }
-        else {
+        else
+        {
 
             pageHistory.currentPage.style.display = "none"
             pageHistory.currentPage = document.querySelector(".stats-page")
@@ -72,12 +77,16 @@ function addStatsOptionEventListeners() {
     })
 }
 
-function addInstructionsOptionEventListeners() {
-    instructionsOption.addEventListener("click", () => {
-        if (!clickedButtons[3]) {
+function addInstructionsOptionEventListeners()
+{
+    instructionsOption.addEventListener("click", () =>
+    {
+        if (!clickedButtons[3])
+        {
             insertHowToPlayHtml()
         }
-        else {
+        else
+        {
             currentPage.style.display = "none"
             currentPage = document.querySelector(".three")
             currentPage.style.display = "block"
@@ -86,3 +95,23 @@ function addInstructionsOptionEventListeners() {
 }
 
 
+function addBodyEventListeners()
+{
+    body.addEventListener("keydown", (e) =>
+    {
+        if (e.key == "Escape")
+        {
+            if (navBar.style.display == "flex")
+            {
+                navBar.style.display = "none"
+                pageHistory.currentPage.style.opacity = "1"
+            }
+            else
+            {
+                navBar.style.display = "flex"
+                pageHistory.currentPage.style.opacity = "0.8"
+            }
+
+        }
+    })
+}

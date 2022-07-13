@@ -1,29 +1,36 @@
-socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) => {
+socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) =>
+{
 
-    if (flag) {
+    if (flag)
+    {
         playerNumber = arrayOfPlayers[playerIndex]
-        if (playerIndex == 0) {
+        if (playerIndex == 0)
+        {
             isAdmin = true
         }
         playerIndexValue = playerIndex
         disconnectButtons[playerIndex].style.display = "block"
     }
 
-    if (numberOfconnectedPlayers == matchTypeValue && isAdmin) {
+    if (numberOfconnectedPlayers == matchTypeValue && isAdmin)
+    {
         goButton.style.display = "block"
     }
     connectButtons[playerIndex].classList.add("active")
-    connectButtons[playerIndex].innerText = "connected"
+    connectButtons[playerIndex].innerText = userProfileInformation.name
 
 
 
 })
 
 
-socket.on("disconnected player", (playerIndex, flag) => {
-    if (flag) {
+socket.on("disconnected player", (playerIndex, flag) =>
+{
+    if (flag)
+    {
         playerNumber = ""
-        if (isAdmin) {
+        if (isAdmin)
+        {
             isAdmin = false
         }
         playerIndexValue = -1
@@ -38,9 +45,11 @@ socket.on("disconnected player", (playerIndex, flag) => {
 
 
 
-socket.on("anyone connected", (connectedPlayersIndexes) => {
+socket.on("anyone connected", (connectedPlayersIndexes) =>
+{
     console.log(connectedPlayersIndexes)
-    connectedPlayersIndexes?.forEach((element) => {
+    connectedPlayersIndexes?.forEach((element) =>
+    {
 
         connectButtons[element].classList.add("active")
         connectButtons[element].innerText = "connected"
@@ -49,8 +58,32 @@ socket.on("anyone connected", (connectedPlayersIndexes) => {
     });
 })
 
+socket.on("anyone joined", (players) =>
+{
 
-socket.on("enter the game arena", () => {
+    players.forEach(element =>
+    {
+        joinedPlayersHtml +=
+            `<div class="j-p-c">
+                <div class="label">${element}</div>
+                <button class="button">remove</button>
+            </div>`
+    })
+    joinedPlayersContainer.innerHTML = `<h1 class="j-ps-c__heading">joined players</h1></h1>` + joinedPlayersHtml
+})
+
+
+socket.on("player joined", (name) =>
+{
+    let divElement = document.createElement("div")
+    divElement.classList.add("j-p-c")
+    divElement.innerHTML = ` <div class="label">${name}</div>
+    <button class="button">remove</button>`
+    joinedPlayersContainer.appendChild(divElement)
+})
+
+socket.on("enter the game arena", () =>
+{
 
     insertGameHtml()
     pageHistory.currentPage.style.display = "none"
@@ -60,3 +93,28 @@ socket.on("enter the game arena", () => {
     pageHistory.currentPlayPageCssFilePath = "/gameFiles/css/style.css"
 })
 
+
+socket.on("settings apply error", () =>
+{
+    alert("joined players are more than the required.please remove them and try again")
+})
+
+
+socket.on("yes you can apply settings", (payload) =>
+{
+    transitionUpward()
+    setTimeout(() =>
+    {
+
+        matchTypeValue = payload
+        if (playerIndexValue != -1)
+        {
+            socket.emit("disconnect player", roomIdInputvalue, playerIndexValue)
+        }
+        insertRoomDashboardPageTeamsdHtml()
+        initializeRommDashboardPageTeamsDomVariables()
+        initializeRommDashboardPageTeamsDashBoardEventListeners()
+        initializeAnyoneConnected()
+    }, 500)
+    setTimeout(transitionClose, 2000)
+})

@@ -1,7 +1,11 @@
-function addConnectButtonsEventListeners() {
-    connectButtons.forEach((element, index) => {
-        element.addEventListener("click", function () {
-            if (!connectButtons[index].classList.contains("active") && playerNumber == "") {
+function addConnectButtonsEventListeners()
+{
+    connectButtons.forEach((element, index) =>
+    {
+        element.addEventListener("click", function ()
+        {
+            if (!connectButtons[index].classList.contains("active") && playerNumber == "")
+            {
                 socket.emit("connect player", roomIdInputvalue, index, matchTypeValue, userProfileInformation)
             }
         })
@@ -9,10 +13,13 @@ function addConnectButtonsEventListeners() {
 }
 
 
-function addDisconnectButtonsEventListeners() {
-    disconnectButtons.forEach((element, index) => {
+function addDisconnectButtonsEventListeners()
+{
+    disconnectButtons.forEach((element, index) =>
+    {
 
-        element.addEventListener("click", function () {
+        element.addEventListener("click", function ()
+        {
 
             socket.emit("disconnect player", roomIdInputvalue, index)
         })
@@ -20,11 +27,14 @@ function addDisconnectButtonsEventListeners() {
 }
 
 
-function addGoButtonEventListeners() {
-    goButton.addEventListener("click", () => {
+function addGoButtonEventListeners()
+{
+    goButton.addEventListener("click", () =>
+    {
 
         transitionUpward()
-        setTimeout(() => {
+        setTimeout(() =>
+        {
 
             socket.emit("enter the game arena", roomIdInputvalue)
             insertGameHtml()
@@ -39,36 +49,33 @@ function addGoButtonEventListeners() {
 }
 
 
-function addApplySettingsButtonEventListeners() {
-    applySettingsButton.addEventListener("click", () => {
+function addApplySettingsButtonEventListeners()
+{
+    applySettingsButton.addEventListener("click", () =>
+    {
 
-        transitionUpward()
-        setTimeout(() => {
-
-            matchTypeValue = Number(matchType.value)
-            if (playerIndexValue != -1) {
-                socket.emit("disconnect player", roomIdInputvalue, playerIndexValue)
-            }
-            insertRoomDashboardPageTeamsdHtml()
-            initializeRommDashboardPageTeamsDomVariables()
-            initializeRommDashboardPageTeamsDashBoardEventListeners()
-            initializeAnyoneConnected()
-        }, 500)
-        setTimeout(transitionClose, 2000)
+        socket.emit("can i apply settings", roomIdInputvalue, Number(matchType.value))
     })
 }
 
-function addExitRoomButtonEventListeners() {
-    exitRoomButton.addEventListener("click", () => {
+function addExitRoomButtonEventListeners()
+{
+    exitRoomButton.addEventListener("click", () =>
+    {
 
-        pageHistory.currentPage.style.display = "none"
-        pageHistory.currentPage = document.querySelector(".room-settings-page")
-        pageHistory.currentPage.style.display = "block"
-        cssLink.href = "/roomSettingsFiles/css/style.css"
-        pageHistory.currentPlayPageCssFilePath = "/roomSettingsFiles/css/style.css"
-        pageHistory.currentPlayPage = pageHistory.currentPage
+        transitionUpward()
+        setTimeout(() =>
+        {
 
-        roomIdInputvalue = ""
-
+            pageHistory.currentPage.style.display = "none"
+            pageHistory.currentPage = document.querySelector(".room-settings-page")
+            pageHistory.currentPage.style.display = "block"
+            cssLink.href = "/roomSettingsFiles/css/style.css"
+            pageHistory.currentPlayPageCssFilePath = "/roomSettingsFiles/css/style.css"
+            pageHistory.currentPlayPage = pageHistory.currentPage
+            roomIdInput.value = ""
+            roomIdInputvalue = ""
+        }, 500)
+        setTimeout(transitionClose, 1500)
     })
 }

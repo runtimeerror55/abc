@@ -1,7 +1,9 @@
-function insertGameHtml() {
+function insertGameHtml()
+{
 
     playersHtml = ""
-    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++) {
+    for (let playerIndex = 0; playerIndex < matchTypeValue; playerIndex++)
+    {
         playersHtml +=
 
             `
@@ -152,26 +154,67 @@ function insertGameHtml() {
 }
 
 
-function insertButtonsHtml(playerIndex) {
-    if (playerIndex == 0) {
-        return `<div class="${arrayOfPlayers[playerIndex]}score score">
+function insertButtonsHtml(playerIndex)
+{
+    if (playerIndexValue == playerIndex)
+    {
+        if (playerIndexValue == 0)
+        {
+            return ` <div class="${arrayOfPlayers[playerIndex]}name name">
+            ${userProfileInformation.name}</div>
+            <div class="${arrayOfPlayers[playerIndex]}exit exit">
+        exit</div>
+        <div class="${arrayOfPlayers[playerIndex]}score score">
         score</div>
     <div class="${arrayOfPlayers[playerIndex]}play play">
         play</div>`
-    }
-    else {
-        return `  <div class="${arrayOfPlayers[playerIndex]}score score">
+        }
+        else
+        {
+            return ` <div class="${arrayOfPlayers[playerIndex]}name name">
+            ${userProfileInformation.name}</div>
+              <div class="${arrayOfPlayers[playerIndex]}exit exit">
+        exit</div>
+        <div class="${arrayOfPlayers[playerIndex]}score score">
         score</div>
     <div class="${arrayOfPlayers[playerIndex]}ready ready not-ready-active">
         not ready
     </div>`
+        }
+    }
+    else
+    {
+        if (playerIndex == 0)
+        {
+
+            return `<div class="${arrayOfPlayers[playerIndex]}name name">
+            ${userProfileInformation.name}</div>
+            <div class="${arrayOfPlayers[playerIndex]}score score">
+        score</div>
+    <div class="${arrayOfPlayers[playerIndex]}play play">
+        play</div>`
+        }
+        else
+        {
+            return ` <div class="${arrayOfPlayers[playerIndex]}name name">
+            ${userProfileInformation.name}</div>
+             <div class="${arrayOfPlayers[playerIndex]}score score">
+        score</div>
+    <div class="${arrayOfPlayers[playerIndex]}ready ready not-ready-active">
+        not ready
+    </div>`
+        }
+
     }
 }
 
 
-function insertRoomDashboardPageTeamsdHtml() {
+function insertRoomDashboardPageTeamsdHtml()
+{
 
-    for (let i = 0; i < matchTypeValue; i++) {
+    playersHtml = ""
+    for (let i = 0; i < matchTypeValue; i++)
+    {
 
         playersHtml +=
 
@@ -188,7 +231,8 @@ function insertRoomDashboardPageTeamsdHtml() {
     }
 
     teamsContainer = document.querySelector(".teams-container")
-    if (teamsContainer == null) {
+    if (teamsContainer == null)
+    {
         articleElement = document.createElement('article')
         articleElement.innerHTML =
             `            
@@ -204,8 +248,8 @@ function insertRoomDashboardPageTeamsdHtml() {
             `
         roomDashboardPageArticlesContainer.appendChild(articleElement)
     }
-    else {
+    else
+    {
         teamsContainer.innerHTML = playersHtml
     }
-    playersHtml = ""
 }

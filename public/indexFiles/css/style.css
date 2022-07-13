@@ -9,7 +9,7 @@
 .home-page {
 
     background-color: rgba(255, 0, 0, 0.5);
-    transition: background-color, opacity;
+    transition: background-color;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
     height: 100vh;

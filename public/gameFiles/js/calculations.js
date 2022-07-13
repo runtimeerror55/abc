@@ -1,5 +1,6 @@
 
-function calculateMouseCoordinates(e) {
+function calculateMouseCoordinates(e)
+{
 
     let target = e.target
     let className = target.className
@@ -7,7 +8,8 @@ function calculateMouseCoordinates(e) {
     let row = Number(className.substring(position - 1, position + 1))
 
     // chech if row is NaN
-    if (!(row == row)) {
+    if (!(row == row))
+    {
         row = Number(className[position])
     }
 
@@ -19,9 +21,11 @@ function calculateMouseCoordinates(e) {
 }
 
 
-function sumOfCoordinates(currentCoordinates) {
+function sumOfCoordinates(currentCoordinates)
+{
     let sum = [0, 0];
-    currentCoordinates.forEach((element) => {
+    currentCoordinates.forEach((element) =>
+    {
         sum[0] = sum[0] + element[0]
         sum[1] = sum[1] + element[1]
     })
@@ -30,8 +34,10 @@ function sumOfCoordinates(currentCoordinates) {
 
 
 
-function rotateTheCoordinates(currentCoordinates) {
-    let rotatedCoordinates = currentCoordinates.map((element) => {
+function rotateTheCoordinates(currentCoordinates)
+{
+    let rotatedCoordinates = currentCoordinates.map((element) =>
+    {
         return [(element[1] - currentCoordinates[0][1]) + currentCoordinates[0][0], -(element[0] - currentCoordinates[0][0]) + currentCoordinates[0][1]]
     })
 
@@ -39,9 +45,11 @@ function rotateTheCoordinates(currentCoordinates) {
 }
 
 
-function markTheCoordinates(currentCoordinates) {
+function markTheCoordinates(currentCoordinates)
+{
 
-    currentCoordinates.forEach(element => {
+    currentCoordinates.forEach(element =>
+    {
         binaryMatrix[element[0]][element[1]] = 1
         binaryMatrix[element[0]][15]++;
         arrayOftotalNoOfBlocksInEachRow[element[0]]++
@@ -53,25 +61,30 @@ function markTheCoordinates(currentCoordinates) {
 
 
 
-function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) {
+function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag)
+{
 
-    fullRows.forEach(row => {
+    fullRows.forEach(row =>
+    {
 
         laserInSpace.play()
         let laserBeamRow = document.querySelector(`.${playerNumber}laser-beam-row${row}`)
         laserBeamRow.style.width = "360px"
-        socket.emit("laserBeamRow", playerNumber, row, "360px")
+        socket.emit("laserBeamRow", roomIdInputvalue, playerNumber, row, "360px")
 
-        setTimeout(() => {
+        setTimeout(() =>
+        {
 
             glassBreak.play()
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 15; i++)
+            {
 
                 let box = document.querySelector(`.${playerNumber}row${row}column${i}`)
                 let position = box.className.search(/active[0-9]/)
                 let colorClass = box.className.substring(position, position + 7)
                 box.classList.toggle(colorClass)
-                if (flag) {
+                if (flag)
+                {
                     binaryMatrix[row][i] = 0
                 }
             }
@@ -79,21 +92,25 @@ function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) 
             arrayOftotalNoOfBlocksInEachRow[row] = 0
             let k = row - 1
 
-            while (arrayOftotalNoOfBlocksInEachRow[k]) {
+            while (arrayOftotalNoOfBlocksInEachRow[k])
+            {
 
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 15; i++)
+                {
 
                     let box = document.querySelector(`.${playerNumber}row${k}column${i}`)
                     let position = box.className.search(/active[0-9]/)
 
-                    if (position != -1) {
+                    if (position != -1)
+                    {
 
                         let box1 = document.querySelector(`.${playerNumber}row${k + 1}column${i}`)
                         let colorClass = box.className.substring(position, position + 7)
                         box.classList.toggle(colorClass)
                         box1.classList.toggle(colorClass)
 
-                        if (flag) {
+                        if (flag)
+                        {
 
                             binaryMatrix[k][i] = 0
                             binaryMatrix[k + 1][i] = 1
@@ -108,7 +125,7 @@ function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) 
             }
 
             laserBeamRow.style.width = '0px'
-            socket.emit("laserBeamRow", playerNumber, row, "0px")
+            socket.emit("laserBeamRow", roomIdInputvalue, playerNumber, row, "0px")
         }, 400)
     })
 
@@ -116,7 +133,8 @@ function destroy(fullRows, arrayOftotalNoOfBlocksInEachRow, playerNumber, flag) 
 
 
 
-function deepCloneArray(input) {
+function deepCloneArray(input)
+{
 
     return input.map(element => Array.isArray(element) ? deepCloneArray(element) : element)
 }
@@ -126,15 +144,19 @@ function deepCloneArray(input) {
 
 
 
-function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column) {
+function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column)
+{
 
-    while (true) {
+    while (true)
+    {
 
-        if (moveTheCoordinates(inputCoordinates, direction, column)) {
+        if (moveTheCoordinates(inputCoordinates, direction, column))
+        {
 
             inputCoordinates = direction == "right" ? generateNewCoordinates(inputCoordinates, 0, 1) : generateNewCoordinates(inputCoordinates, 0, -1)
         }
-        else {
+        else
+        {
 
             break
         }
@@ -143,7 +165,8 @@ function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column) {
 
     let isTrue = inputCoordinates.some(element => element[1] == column)
 
-    if (isTrue) {
+    if (isTrue)
+    {
 
         toggleClass(currentCoordinates, false, playerNumber, blockColor)
         currentCoordinates = inputCoordinates
@@ -154,14 +177,16 @@ function moveTheCoordinatesToTheMouse(inputCoordinates, direction, column) {
 }
 
 
-function gameOver() {
+function gameOver()
+{
 
     arrayOfPlayersGameOver[playerIndexValue].style.height = "100%"
     addResetButtonEventListeners()
     socket.emit("game over", roomIdInputvalue, playerIndexValue, score)
 }
 
-function updateScore(length) {
+function updateScore(length)
+{
     score += length * (100 * length)
     arrayOfPlayersScoreBox[playerIndexValue].innerText = `${score}`
     socket.emit("update score", roomIdInputvalue, playerIndexValue, score)
