@@ -47,7 +47,7 @@ function insertRoomSettingsHtml()
 
 
 
-function insertStatsHtml()
+function insertStatsHtml(payload)
 {
     let htmlData = ""
     let innerHtmlData = ""
