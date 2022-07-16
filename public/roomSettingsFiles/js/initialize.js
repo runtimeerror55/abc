@@ -17,9 +17,6 @@ function initializeRoomSettingsPageAllVariables()
     initializeRoomSettingsPageDomVariable()
     userProfileInformation = undefined
     players = ["one", "two", "three", "four"]
-    socketId = ""
-
-
 }
 
 

@@ -65,23 +65,26 @@ function addStatsOptionEventListeners()
         navBar.style.display = "none"
         pageHistory.currentPage.style.opacity = "1"
         transitionUpward()
-
-        if (!pageHistory.optionsClicked[2])
+        setTimeout(() =>
         {
 
-            socket.emit("retrieve stats data", userProfileInformation.googleId)
+            if (!pageHistory.optionsClicked[2])
+            {
 
-        }
-        else
-        {
+                socket.emit("retrieve stats data", userProfileInformation.googleId)
 
-            pageHistory.currentPage.style.display = "none"
-            pageHistory.currentPage = document.querySelector(".stats-page")
-            pageHistory.currentPage.style.display = "block"
-            cssLink.href = "/statsFiles/css/stats.css"
+            }
+            else
+            {
 
+                pageHistory.currentPage.style.display = "none"
+                pageHistory.currentPage = document.querySelector(".stats-page")
+                pageHistory.currentPage.style.display = "block"
+                cssLink.href = "/statsFiles/css/stats.css"
+                setTimeout(transitionClose, 2000)
+            }
+        }, 500)
 
-        }
     })
 }
 

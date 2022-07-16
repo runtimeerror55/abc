@@ -15,6 +15,7 @@ let roomSettingsPage = document.querySelector(".room-settings-page")
 let roomDashboardPage = document.querySelector(".room-dashboard-page")
 let gameArenaPage = document.querySelector(".game-arena-page")
 let statsPage = document.querySelector(".stats-page")
+let socketId = ""
 
 let filePaths = {
     "homePage": {

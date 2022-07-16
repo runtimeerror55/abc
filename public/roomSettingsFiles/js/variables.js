@@ -8,5 +8,5 @@ let signOutButton
 
 let userProfileInformation
 let players
-let socketId
+
 
