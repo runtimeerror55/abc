@@ -1,10 +1,3 @@
-socket.on("connect", () =>
-{
-    console.log(socket.id)
-    socketId = socket.id
-})
-
-
 socket.on("joining error", (errorMessage) =>
 {
     alert(errorMessage)
