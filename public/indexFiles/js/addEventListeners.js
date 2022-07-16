@@ -85,7 +85,7 @@ function addStatsOptionEventListeners()
 
             }
         }, 500)
-        setTimeout(transitionClose, 2000)
+        setTimeout(transitionClose, 8000)
     })
 }
 
