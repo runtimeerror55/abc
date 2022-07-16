@@ -6,7 +6,7 @@ let goButton
 let roomDashboardPageArticlesContainer
 let applySettingsButton
 let matchType
-let teamsContainer
+let teamsDashboardArticle
 let exitRoomButton
 let joinedPlayersHtml
 let joinedPlayersContainer

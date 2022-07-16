@@ -19,6 +19,7 @@ socket.on("joined room", (payload) =>
 
         insertRoomDashboardHtml()
         matchTypeValue = payload
+        matchType.value = `${payload}`
         insertRoomDashboardPageTeamsdHtml()
         initializeRommDashboardPageTeamsDomVariables()
         initializeRommDashboardPageTeamsDashBoardEventListeners()

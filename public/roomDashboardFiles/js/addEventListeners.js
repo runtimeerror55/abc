@@ -21,7 +21,7 @@ function addDisconnectButtonsEventListeners()
         element.addEventListener("click", function ()
         {
 
-            socket.emit("disconnect player", roomIdInputvalue, index)
+            socket.emit("disconnect player number", roomIdInputvalue, index)
         })
     })
 }
@@ -53,8 +53,14 @@ function addApplySettingsButtonEventListeners()
 {
     applySettingsButton.addEventListener("click", () =>
     {
+        if (isAdmin)
+        {
 
-        socket.emit("can i apply settings", roomIdInputvalue, Number(matchType.value))
+            socket.emit("can i apply settings", roomIdInputvalue, Number(matchType.value))
+        } else
+        {
+            alert("only admin can change settings")
+        }
     })
 }
 

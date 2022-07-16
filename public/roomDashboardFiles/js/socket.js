@@ -18,21 +18,17 @@ socket.on("connected player", (playerIndex, numberOfconnectedPlayers, flag) =>
     }
     connectButtons[playerIndex].classList.add("active")
     connectButtons[playerIndex].innerText = userProfileInformation.name
-
+    console.log(numberOfconnectedPlayers)
 
 
 })
 
 
-socket.on("disconnected player", (playerIndex, flag) =>
+socket.on("disconnected player number", (playerIndex, flag) =>
 {
     if (flag)
     {
         playerNumber = ""
-        if (isAdmin)
-        {
-            isAdmin = false
-        }
         playerIndexValue = -1
         disconnectButtons[playerIndex].style.display = "none"
 
@@ -42,7 +38,29 @@ socket.on("disconnected player", (playerIndex, flag) =>
     goButton.style.display = "none"
 })
 
+socket.on("player disconnected", () =>
+{
+    transitionUpward()
+    setTimeout(() =>
+    {
 
+        insertRoomDashboardHtml()
+        matchTypeValue = 1
+        playerIndexValue = -1
+        playerNumber = ""
+        insertRoomDashboardPageTeamsdHtml()
+        initializeRommDashboardPageTeamsDomVariables()
+        initializeRommDashboardPageTeamsDashBoardEventListeners()
+        initializeAnyoneConnected()
+        pageHistory.currentPage.style.display = "none"
+        pageHistory.currentPage = document.querySelector(".room-dashboard-page")
+        pageHistory.currentPage.style.display = "block"
+        pageHistory.currentPlayPage = pageHistory.currentPage
+        pageHistory.currentPlayPageCssFilePath = "/roomDashboardFiles/css/style.css"
+
+    }, 500)
+    setTimeout(transitionClose, 2000)
+})
 
 
 socket.on("anyone connected", (connectedPlayersIndexes) =>
@@ -107,10 +125,9 @@ socket.on("yes you can apply settings", (payload) =>
     {
 
         matchTypeValue = payload
-        if (playerIndexValue != -1)
-        {
-            socket.emit("disconnect player", roomIdInputvalue, playerIndexValue)
-        }
+        matchType.value = `${payload}`
+        playerNumber = ""
+        playerIndexValue = -1
         insertRoomDashboardPageTeamsdHtml()
         initializeRommDashboardPageTeamsDomVariables()
         initializeRommDashboardPageTeamsDashBoardEventListeners()

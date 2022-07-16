@@ -3,14 +3,18 @@ function addHomeOptionEventListeners()
 {
     homeOption.addEventListener("click", () =>
     {
+        navBar.style.display = "none"
+        pageHistory.currentPage.style.opacity = "1"
+        transitionUpward()
+        setTimeout(() =>
+        {
 
-
-        pageHistory.currentPage.style.display = "none"
-        pageHistory.currentPage = document.querySelector(".home-page")
-        pageHistory.currentPage.style.display = "block"
-        cssLink.href = "/indexFiles/css/style.css"
-
-
+            pageHistory.currentPage.style.display = "none"
+            pageHistory.currentPage = document.querySelector(".home-page")
+            pageHistory.currentPage.style.display = "block"
+            cssLink.href = "/indexFiles/css/style.css"
+        }, 500)
+        setTimeout(transitionClose, 2000)
     })
 }
 
@@ -22,6 +26,7 @@ function addPlayOptionEventListeners()
     {
 
         navBar.style.display = "none"
+        pageHistory.currentPage.style.opacity = "1"
         transitionUpward()
         setTimeout(() =>
         {

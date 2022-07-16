@@ -230,12 +230,9 @@ function insertRoomDashboardPageTeamsdHtml()
 
     }
 
-    teamsContainer = document.querySelector(".teams-container")
-    if (teamsContainer == null)
-    {
-        articleElement = document.createElement('article')
-        articleElement.innerHTML =
-            `            
+    teamsDashboardArticle = document.querySelector(".teams-dashboard")
+    teamsDashboardArticle.innerHTML =
+        `            
                     <section>
                         <div class="teams-container">
                             ${playersHtml}
@@ -246,10 +243,7 @@ function insertRoomDashboardPageTeamsdHtml()
                     </section>
             
             `
-        roomDashboardPageArticlesContainer.appendChild(articleElement)
-    }
-    else
-    {
-        teamsContainer.innerHTML = playersHtml
-    }
+
+
+
 }

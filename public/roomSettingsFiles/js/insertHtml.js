@@ -53,21 +53,19 @@ function insertRoomDashboardHtml()
         
                 </div>
             </article>
+
             <article>
               <!-- j-ps-c = joined-players-container -->
             
                 
-               <div class="j-ps-c">
-              <h1 class="j-ps-c__heading">joined players</h1>
-               
-
-    
-    
+                <div class="j-ps-c">
+                    <h1 class="j-ps-c__heading">joined players</h1>
                 </div>
             </article>
+
+            <article class="teams-dashboard"></article>
         </div>
-            
-            `
+`
 
     cssLink.href = "/roomDashboardFiles/css/style.css"
     // loadJsDynamically("/teamsFiles/js/socket.js")
@@ -81,4 +79,3 @@ function insertRoomDashboardHtml()
 
 }
 
-{/* <div class="g-s-c__room-id">room-id: ${roomIdInputvalue}</div> */ }

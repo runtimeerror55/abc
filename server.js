@@ -148,13 +148,14 @@ io.on("connection", (socket) =>
         })
 
 
-        socket.on("disconnect player", (roomId, playerIndex) =>
+        socket.on("disconnect player number", (roomId, playerIndex) =>
         {
 
-                delete connectedRooms[roomId]["connectedPlayersDetails"][socket.id]
+                connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["playerNumber"] = undefined
                 connectedRooms[roomId]["connectedPlayers"]--
-                io.to(socket.id).emit("disconnected player", playerIndex, true)
-                socket.broadcast.in(id).emit("disconnected player", playerIndex, false)
+                io.to(socket.id).emit("disconnected player number", playerIndex, true)
+                socket.broadcast.in(id).emit("disconnected player number", playerIndex, false)
+                console.log("hi")
 
         })
 
@@ -164,13 +165,16 @@ io.on("connection", (socket) =>
                 let roomId = [...socket.rooms][1]
                 if (roomId != undefined)
                 {
-                        connectedRooms[roomId]["connectedPlayers"]--
-                        socket.broadcast.in(roomId).emit("disconnected player", connectedRooms[roomId]["connectedPlayersDetails"][socket.id]["playerNumber"], false)
+                        connectedRooms[roomId]["connectedPlayers"] = 0
+                        connectedRooms[roomId]["joinedPlayers"]--
+                        connectedRooms[roomId]["matchTypeValue"] = 1
                         delete connectedRooms[roomId]["connectedPlayersDetails"][socket.id]
-                        if (connectedRooms[roomId]["connectedPlayers"] == 0)
+
+                        if (connectedRooms[roomId]["JoinedPlayers"] == 0)
                         {
                                 delete connectedRooms[roomId]
                         }
+                        socket.broadcast.in(roomId).emit("player disconnected")
                 }
         })
 
@@ -190,6 +194,8 @@ io.on("connection", (socket) =>
         {
                 if (connectedRooms[roomId]["joinedPlayers"] <= matchTypeValue)
                 {
+
+                        connectedRooms[roomId]["connectedPlayers"] = 0
                         connectedRooms[roomId]["matchTypeValue"] = matchTypeValue
                         io.to(roomId).emit("yes you can apply settings", matchTypeValue)
                 }

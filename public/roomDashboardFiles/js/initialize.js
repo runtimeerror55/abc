@@ -4,10 +4,10 @@ function initializeRommDashboardPageDomVariables()
 
     matchType = document.querySelector(".g-s-c__match-type")
     roomDashboardPageArticlesContainer = document.querySelector(".articles-container")
-    teamsContainer = undefined
     exitRoomButton = document.querySelector(".g-s-c__exit-room")
     applySettingsButton = document.querySelector(".g-s-c__apply-button")
     joinedPlayersContainer = document.querySelector(".j-ps-c")
+    teamsDashboardArticle = undefined
 }
 
 function initializeRommDashboardPageTeamsDomVariables()
