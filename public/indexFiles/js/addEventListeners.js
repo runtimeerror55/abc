@@ -62,23 +62,30 @@ function addStatsOptionEventListeners()
     statsOption.addEventListener("click", () =>
     {
 
-        if (!pageHistory.optionsClicked[2])
+        navBar.style.display = "none"
+        pageHistory.currentPage.style.opacity = "1"
+        transitionUpward()
+        setTimeout(() =>
         {
 
-            insertStatsHtml()
+            if (!pageHistory.optionsClicked[2])
+            {
 
-        }
-        else
-        {
+                insertStatsHtml()
 
-            pageHistory.currentPage.style.display = "none"
-            pageHistory.currentPage = document.querySelector(".stats-page")
-            pageHistory.currentPage.style.display = "block"
-            cssLink.href = "/statsFiles/css/stats.css"
+            }
+            else
+            {
+
+                pageHistory.currentPage.style.display = "none"
+                pageHistory.currentPage = document.querySelector(".stats-page")
+                pageHistory.currentPage.style.display = "block"
+                cssLink.href = "/statsFiles/css/stats.css"
 
 
-        }
-
+            }
+        }, 500)
+        setTimeout(transitionClose, 2000)
     })
 }
 
