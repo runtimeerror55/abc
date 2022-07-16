@@ -71,7 +71,7 @@ function addStatsOptionEventListeners()
             if (!pageHistory.optionsClicked[2])
             {
 
-                insertStatsHtml()
+                socket.emit("retrieve stats data", userProfileInformation.googleId)
 
             }
             else
@@ -85,7 +85,7 @@ function addStatsOptionEventListeners()
 
             }
         }, 500)
-        setTimeout(transitionClose, 8000)
+        setTimeout(transitionClose, 10000)
     })
 }
 
